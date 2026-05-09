@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu primer paso con IA — Sistema Creador IA</title>
+  <meta name="description" content="Empieza a usar IA hoy aunque no sepas nada. Acceso gratis al Nivel 1 + Kit de Inicio IA." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%23A7FF1F'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #000000;
+      --card:    #0A0A0A;
+      --border:  #1C1C1C;
+      --neon:    #A7FF1F;
+      --neon-dk: #8AE000;
+      --neon-gl: rgba(167,255,31,.15);
+      --white:   #FFFFFF;
+      --gray:    rgba(255,255,255,.55);
+      --muted:   rgba(255,255,255,.3);
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BG ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(167,255,31,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(167,255,31,.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW CENTER ── */
+    .glow {
+      position: fixed;
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(167,255,31,.09) 0%, transparent 65%);
+      top: 40%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px 64px;
+    }
+
+    /* ── LOGO TOP ── */
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 40px;
+    }
+    .logo-top {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .logo-main {
+      font-size: .95rem;
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+    .logo-main span { color: var(--neon); }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 52px 48px;
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      box-shadow: 0 0 80px rgba(167,255,31,.06), 0 32px 64px rgba(0,0,0,.4);
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(167,255,31,.07);
+      border: 1px solid rgba(167,255,31,.25);
+      color: var(--neon);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--neon);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .3; transform: scale(.7); }
+    }
+
+    /* ── PYRAMID ICON ── */
+    .pyramid-icon {
+      margin-bottom: 24px;
+    }
+    .pyramid-icon svg {
+      width: 56px; height: 56px;
+      filter: drop-shadow(0 0 16px rgba(167,255,31,.4));
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    h1 span { color: var(--neon); }
+
+    .subhead {
+      font-size: .95rem;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.65;
+      max-width: 380px;
+      margin-bottom: 32px;
+    }
+    .subhead strong { color: var(--white); }
+
+    /* ── DIVIDER ── */
+    .div {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 28px;
+    }
+
+    /* ── BULLETS ── */
+    .bullets {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .bullet-check {
+      width: 22px; height: 22px;
+      border-radius: 7px;
+      background: rgba(167,255,31,.1);
+      border: 1px solid rgba(167,255,31,.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .bullet-check svg {
+      width: 11px; height: 11px;
+      stroke: var(--neon);
+      stroke-width: 2.5;
+    }
+    .bullet-text {
+      font-size: .88rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    .bullet-text strong { color: var(--white); }
+
+    /* ── FORM ── */
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .input-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .input-icon {
+      position: absolute;
+      left: 16px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      display: flex; align-items: center;
+    }
+    .input-icon svg { width: 16px; height: 16px; }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 16px 16px 44px;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input::placeholder { color: var(--muted); }
+    input:focus {
+      border-color: rgba(167,255,31,.4);
+      box-shadow: 0 0 0 3px rgba(167,255,31,.08);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--neon);
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 18px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 0 40px rgba(167,255,31,.2), 0 4px 20px rgba(0,0,0,.4);
+      transition: all .2s;
+      margin-top: 4px;
+    }
+    .btn-submit:hover {
+      background: var(--neon-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 0 60px rgba(167,255,31,.35), 0 8px 32px rgba(0,0,0,.5);
+    }
+    .btn-submit svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── PRIVACY ── */
+    .privacy {
+      margin-top: 16px;
+      font-size: .72rem;
+      color: var(--muted);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .privacy svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    /* ── SOCIAL PROOF ── */
+    .social-proof {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      width: 100%;
+    }
+    .avatars {
+      display: flex;
+      margin-right: 4px;
+    }
+    .av {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .62rem;
+      font-weight: 900;
+      color: #000;
+      margin-left: -8px;
+      flex-shrink: 0;
+    }
+    .av:first-child { margin-left: 0; }
+    .av-1 { background: var(--neon); }
+    .av-2 { background: #6EE7B7; }
+    .av-3 { background: #93C5FD; }
+    .av-4 { background: #FCD34D; }
+
+    .proof-text {
+      font-size: .78rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+    .proof-text strong { color: var(--white); }
+
+    /* ── STEPS MINI ── */
+    .steps-mini {
+      width: 100%;
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .step-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      padding: 16px 10px;
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .step-mini-n {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: var(--neon);
+      color: #000;
+      font-size: .75rem;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-mini-t {
+      font-size: .72rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      margin-top: 40px;
+      font-size: .7rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .footer-note span { color: var(--neon); font-weight: 700; }
+
+    /* ── SUCCESS STATE ── */
+    .success-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(167,255,31,.12);
+      border: 2px solid rgba(167,255,31,.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-icon svg {
+      width: 36px; height: 36px;
+      stroke: var(--neon);
+      stroke-width: 2;
+    }
+    .success-h {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+    }
+    .success-h span { color: var(--neon); }
+    .success-p {
+      font-size: .9rem;
+      color: var(--gray);
+      line-height: 1.65;
+      max-width: 320px;
+    }
+    .btn-skool {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--neon);
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 0 40px rgba(167,255,31,.25);
+      transition: all .2s;
+    }
+    .btn-skool:hover { background: var(--neon-dk); transform: translateY(-2px); }
+    .btn-skool svg { width: 16px; height: 16px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
+      .card { padding: 36px 24px; border-radius: 20px; }
+      h1 { font-size: 1.6rem; }
+      .steps-mini { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="wrap">
+
+  <!-- Logo -->
+  <div class="logo">
+    <span class="logo-top">York Martínez</span>
+    <span class="logo-main">SISTEMA <span>CREADOR IA</span></span>
+  </div>
+
+  <!-- Card -->
+  <div class="card">
+
+    <!-- Badge -->
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Nivel 1 · Acceso gratuito · Sin experiencia
+    </div>
+
+    <!-- Pyramid icon -->
+    <div class="pyramid-icon">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,8 95,88 5,88" fill="#A7FF1F"/>
+        <polygon points="50,8 95,88 5,88" fill="url(#pg)" opacity=".3"/>
+        <line x1="5" y1="88" x2="95" y2="88" stroke="#000" stroke-width="2"/>
+        <line x1="26" y1="55" x2="74" y2="55" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+        <line x1="38" y1="35" x2="62" y2="35" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+        <defs>
+          <linearGradient id="pg" x1="50" y1="8" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#000000"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Headline -->
+    <h1>Empieza a usar IA<br><span>hoy. Desde cero.</span></h1>
+
+    <p class="subhead">
+      Ingresa tu nombre y correo.<br>
+      Te mando acceso inmediato al <strong>Nivel 1 gratis</strong> + el <strong>Kit de Inicio IA.</strong>
+    </p>
+
+    <div class="div"></div>
+
+    <!-- Bullets -->
+    <div class="bullets">
+      <div class="bullet">
+        <div class="bullet-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="bullet-text"><strong>Acceso al Nivel 1</strong> — La IA explicada sin tecnicismos. Tu primera victoria en menos de 1 hora.</p>
+      </div>
+      <div class="bullet">
+        <div class="bullet-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="bullet-text"><strong>Kit de Inicio IA</strong> — Las 3 herramientas que uso cada día y cómo empezar con ellas hoy.</p>
+      </div>
+      <div class="bullet">
+        <div class="bullet-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="bullet-text"><strong>La Pirámide completa</strong> — El mapa de los 5 niveles para que sepas exactamente a dónde vas.</p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form class="form" id="captureForm">
+      <div class="input-wrap">
+        <div class="input-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <input type="text" name="nombre" placeholder="Tu nombre" required autocomplete="given-name" />
+      </div>
+      <div class="input-wrap">
+        <div class="input-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <input type="email" name="email" placeholder="Tu correo electrónico" required autocomplete="email" />
+      </div>
+
+      <button type="submit" class="btn-submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        QUIERO MI ACCESO GRATIS
+      </button>
+    </form>
+
+    <!-- Privacy -->
+    <p class="privacy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Sin spam. Solo valor. Cancela cuando quieras.
+    </p>
+
+    <!-- Social proof -->
+    <div class="social-proof">
+      <div class="avatars">
+        <div class="av av-1">YM</div>
+        <div class="av av-2">CR</div>
+        <div class="av av-3">ML</div>
+        <div class="av av-4">SP</div>
+      </div>
+      <p class="proof-text">
+        <strong>Personas como tú</strong> ya están subiendo la pirámide. El Nivel 1 es gratis.
+      </p>
+    </div>
+
+    <!-- Steps mini -->
+    <div class="steps-mini">
+      <div class="step-mini">
+        <div class="step-mini-n">1</div>
+        <p class="step-mini-t">Llenar el formulario</p>
+      </div>
+      <div class="step-mini">
+        <div class="step-mini-n">2</div>
+        <p class="step-mini-t">Recibir acceso en segundos</p>
+      </div>
+      <div class="step-mini">
+        <div class="step-mini-n">3</div>
+        <p class="step-mini-t">Completar Nivel 1 hoy</p>
+      </div>
+    </div>
+
+    <!-- Success screen (hidden) -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="success-h">¡Listo, <span id="firstName"></span>!<br>Ya tienes acceso.</h2>
+      <p class="success-p">Revisa tu correo con el Kit de Inicio IA. Ahora entra a la comunidad y completa el Nivel 1 hoy.</p>
+      <a class="btn-skool" href="https://www.skool.com/sistema-creador-ia-2270/about" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        ENTRAR AL NIVEL 1
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Footer note -->
+  <p class="footer-note">
+    <span>Sistema Creador IA</span> · York Martínez · Tu Primer Empleado IA
+  </p>
+
+</div>
+
+<script>
+  const form = document.getElementById('captureForm');
+  const success = document.getElementById('successScreen');
+  const firstName = document.getElementById('firstName');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const nombre = form.nombre.value.trim();
+    const email  = form.email.value.trim();
+
+    // Guardar en Formspree — reemplaza YOUR_FORM_ID con tu ID
+    try {
+      await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ nombre, email })
+      });
+    } catch(err) { /* falla silenciosamente */ }
+
+    // Mostrar éxito
+    firstName.textContent = nombre.split(' ')[0];
+    form.style.display = 'none';
+    document.querySelector('.bullets').style.display = 'none';
+    document.querySelector('.div').style.display = 'none';
+    document.querySelector('.privacy').style.display = 'none';
+    document.querySelector('.social-proof').style.display = 'none';
+    document.querySelector('.steps-mini').style.display = 'none';
+    success.style.display = 'flex';
+
+    // Redirigir a Skool después de 3 segundos
+    setTimeout(() => {
+      window.location.href = 'https://www.skool.com/sistema-creador-ia-2270/about';
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>
