@@ -417,6 +417,54 @@
       .tool-card { flex-direction: column; gap: 12px; }
       .level-card { padding: 14px 16px; }
     }
+
+    /* ── DOWNLOAD BUTTON ── */
+    .download-bar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 12px 24px 0;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid rgba(167,255,31,.35);
+      color: var(--neon);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background .2s, border-color .2s, transform .15s;
+      letter-spacing: 0.3px;
+    }
+    .btn-download:hover {
+      background: var(--neon-glow);
+      border-color: rgba(167,255,31,.6);
+      transform: translateY(-1px);
+    }
+    .btn-download:active { transform: translateY(0); }
+    .btn-download svg { width: 15px; height: 15px; }
+    .btn-download.loading { opacity: .6; pointer-events: none; }
+
+    /* ── PRINT / PDF STYLES ── */
+    @media print {
+      .confirm-bar, .download-bar, .cta-section, .footer { display: none !important; }
+      body { background: #fff !important; color: #000 !important; }
+      .section, .hero { padding: 20px !important; }
+      .tool-card, .level-card { border: 1px solid #ddd !important; background: #fafafa !important; break-inside: avoid; }
+      .tool-name, .level-name, h1, h2 { color: #000 !important; }
+      .tool-use, .step-text, .level-desc, .section-desc, .hero-sub { color: #444 !important; }
+      .tool-num { background: #A7FF1F !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .level-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .neon, .section-tag, .tool-chip, .level-tag, .level-you, .hero-badge { color: #2a8a00 !important; }
+      .tool-link { color: #2a8a00 !important; }
+      .pyramid-section { background: #f5f5f5 !important; }
+      .divider { background: #ddd !important; }
+    }
   </style>
 </head>
 <body>
@@ -425,6 +473,19 @@
 <div class="confirm-bar">
   ⚡ Tu Kit de Inicio IA está aquí abajo &nbsp;<span>· Guarda esta página</span>
 </div>
+
+<!-- DOWNLOAD BAR -->
+<div class="download-bar">
+  <button class="btn-download" id="btnPDF" onclick="descargarPDF()">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 19h14"/>
+    </svg>
+    Descargar como PDF
+  </button>
+</div>
+
+<!-- KIT CONTENT (exported to PDF) -->
+<div id="kit-content">
 
 <!-- HERO -->
 <div class="hero">
@@ -630,6 +691,8 @@
 
 <div class="divider"></div>
 
+</div><!-- /kit-content -->
+
 <!-- CTA FINAL -->
 <div class="cta-section">
   <h2 class="cta-title">El Nivel 1 ya está<br><span>desbloqueado para ti.</span></h2>
@@ -647,6 +710,35 @@
 <div class="footer">
   <span>Sistema</span> &gt; Esfuerzo &nbsp;·&nbsp; York Martínez · Publicista Digital Anyork
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  function descargarPDF() {
+    const btn = document.getElementById('btnPDF');
+    btn.classList.add('loading');
+    btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;animation:spin2 1s linear infinite"><path d="M4 4v5h5M20 20v-5h-5"/><path d="M4 9a9 9 0 0 1 15-3M20 15a9 9 0 0 1-15 3"/></svg> Generando PDF...';
+
+    // Elemento a exportar — excluye barra de descarga, CTA y footer
+    const el = document.getElementById('kit-content');
+
+    const opt = {
+      margin:      [10, 10, 10, 10],
+      filename:    'Kit-Inicio-IA-York-Martinez.pdf',
+      image:       { type: 'jpeg', quality: 0.95 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+      jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak:   { mode: ['avoid-all', 'css'] }
+    };
+
+    html2pdf().set(opt).from(el).save().then(() => {
+      btn.classList.remove('loading');
+      btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 19h14"/></svg> Descargar como PDF';
+    });
+  }
+</script>
+<style>
+  @keyframes spin2 { to { transform: rotate(360deg); } }
+</style>
 
 </body>
 </html>
