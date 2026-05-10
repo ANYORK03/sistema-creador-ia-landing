@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu Kit de Inicio IA — York Martínez</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%23A7FF1F'/></svg>" />
+  <meta name="description" content="Tu Kit de Inicio IA ya está aquí. 3 herramientas + la Pirámide completa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:        #000000;
+      --black-card:   #0A0A0A;
+      --black-border: #1C1C1C;
+      --neon:         #A7FF1F;
+      --neon-glow:    rgba(167,255,31,.14);
+      --white:        #FFFFFF;
+      --gray-text:    rgba(255,255,255,.55);
+      --gray-sub:     rgba(255,255,255,.28);
+      --gray-line:    #1A1A1A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER CONFIRM ── */
+    .confirm-bar {
+      width: 100%;
+      background: var(--neon);
+      color: #000;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .confirm-bar span { opacity: .7; font-weight: 500; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 52px 24px 40px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--neon-glow);
+      border: 1px solid rgba(167,255,31,.25);
+      color: var(--neon);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+    .pulse {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--neon);
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.4; transform:scale(.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 40px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .hero h1 span { color: var(--neon); }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--gray-text);
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+    .hero-sub strong { color: var(--white); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--gray-line);
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 44px 24px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--neon);
+      margin-bottom: 10px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--neon);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+    }
+    .section-title span { color: var(--neon); }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--gray-text);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 480px;
+    }
+
+    /* ── TOOL CARDS ── */
+    .tools { display: flex; flex-direction: column; gap: 16px; }
+
+    .tool-card {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: 18px;
+      padding: 22px 22px 22px 20px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: border-color .2s;
+    }
+    .tool-card:hover { border-color: rgba(167,255,31,.25); }
+
+    .tool-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--neon);
+      color: #000;
+      font-size: 16px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tool-body { flex: 1; }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tool-name {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .tool-chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+      background: var(--neon-glow);
+      border: 1px solid rgba(167,255,31,.2);
+      color: var(--neon);
+    }
+
+    .tool-use {
+      font-size: 13px;
+      color: var(--gray-text);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .tool-use strong { color: var(--white); }
+
+    .tool-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .step-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: rgba(167,255,31,.1);
+      border: 1px solid rgba(167,255,31,.2);
+      color: var(--neon);
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text {
+      font-size: 13px;
+      color: var(--gray-text);
+      line-height: 1.5;
+    }
+    .step-text strong { color: var(--white); font-weight: 600; }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--neon);
+      text-decoration: none;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .tool-link:hover { opacity: 1; }
+
+    /* ── PYRAMID SECTION ── */
+    .pyramid-section {
+      background: var(--black-card);
+      border-top: 1px solid var(--gray-line);
+      border-bottom: 1px solid var(--gray-line);
+    }
+
+    .levels { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+
+    .level-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--black-border);
+      background: var(--black);
+      transition: border-color .2s;
+    }
+    .level-card:hover { border-color: rgba(167,255,31,.2); }
+
+    .level-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .level-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .level-connector {
+      width: 1px;
+      flex: 1;
+      min-height: 20px;
+      background: var(--gray-line);
+    }
+
+    /* Color by level */
+    .lvl-1 { background: rgba(167,255,31,.12); color: var(--neon); border: 1px solid rgba(167,255,31,.25); }
+    .lvl-2 { background: rgba(167,255,31,.18); color: var(--neon); border: 1px solid rgba(167,255,31,.3); }
+    .lvl-3 { background: rgba(167,255,31,.25); color: var(--neon); border: 1px solid rgba(167,255,31,.4); }
+    .lvl-4 { background: rgba(167,255,31,.35); color: #000; border: 1px solid rgba(167,255,31,.5); }
+    .lvl-5 { background: var(--neon); color: #000; border: 1px solid var(--neon); }
+
+    .level-body { flex: 1; }
+    .level-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .level-tag {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-bottom: 8px;
+    }
+    .tag-base  { background: rgba(255,255,255,.07); color: var(--gray-text); }
+    .tag-top   { background: var(--neon-glow); color: var(--neon); border: 1px solid rgba(167,255,31,.25); }
+    .tag-elite { background: var(--neon); color: #000; }
+
+    .level-desc {
+      font-size: 13px;
+      color: var(--gray-text);
+      line-height: 1.55;
+    }
+    .level-desc strong { color: var(--white); font-weight: 600; }
+
+    .level-you {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--neon);
+      font-weight: 600;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 44px 24px 60px;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+    .cta-title span { color: var(--neon); }
+
+    .cta-sub {
+      font-size: 14px;
+      color: var(--gray-text);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--neon);
+      color: #000;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 16px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      margin-bottom: 14px;
+    }
+    .btn-primary:hover {
+      background: #c4ff3d;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(167,255,31,.4);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--gray-sub);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--gray-line);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-sub);
+      letter-spacing: 0.5px;
+    }
+    .footer span { color: var(--neon); font-weight: 700; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 36px 20px 32px; }
+      .section { padding: 36px 20px; }
+      .tool-card { flex-direction: column; gap: 12px; }
+      .level-card { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CONFIRM BAR -->
+<div class="confirm-bar">
+  ⚡ Tu Kit de Inicio IA está aquí abajo &nbsp;<span>· Guarda esta página</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="pulse"></span>
+    Kit de Inicio IA — Exclusivo
+  </div>
+  <h1>Las 3 herramientas que uso<br><span>todos los días</span></h1>
+  <p class="hero-sub">
+    No es teoría. Es el stack exacto que uso para <strong>generar contenido, ejecutar proyectos y mantener mi sistema organizado.</strong> Más la Pirámide completa para que sepas exactamente dónde estás y a dónde vas.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- KIT DE HERRAMIENTAS -->
+<section class="section">
+  <div class="section-tag">Kit de Inicio IA</div>
+  <h2 class="section-title">3 herramientas. <span>1 sistema.</span></h2>
+  <p class="section-desc">Estas son las únicas que necesitas para empezar. No más. No menos.</p>
+
+  <div class="tools">
+
+    <!-- HERRAMIENTA 1: ChatGPT -->
+    <div class="tool-card">
+      <div class="tool-num">1</div>
+      <div class="tool-body">
+        <div class="tool-header">
+          <span class="tool-name">ChatGPT</span>
+          <span class="tool-chip">Diseño · Contenido</span>
+        </div>
+        <p class="tool-use">
+          Lo uso para <strong>crear imágenes, diseños visuales y tareas básicas de contenido.</strong> Es tu asistente creativo — le describes lo que necesitas y lo genera en segundos.
+        </p>
+        <div class="tool-steps">
+          <div class="step">
+            <span class="step-dot">1</span>
+            <span class="step-text"><strong>Entra a chat.openai.com</strong> y crea una cuenta gratis</span>
+          </div>
+          <div class="step">
+            <span class="step-dot">2</span>
+            <span class="step-text">Usa el modelo <strong>GPT-4o</strong> — tiene generación de imágenes incluida</span>
+          </div>
+          <div class="step">
+            <span class="step-dot">3</span>
+            <span class="step-text">Primer prompt: <strong>"Crea una imagen para mi negocio de [tu rubro] estilo profesional, fondo oscuro"</strong></span>
+          </div>
+        </div>
+        <a href="https://chat.openai.com" target="_blank" rel="noopener" class="tool-link">
+          Abrir ChatGPT →
+        </a>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTA 2: Claude -->
+    <div class="tool-card">
+      <div class="tool-num">2</div>
+      <div class="tool-body">
+        <div class="tool-header">
+          <span class="tool-name">Claude</span>
+          <span class="tool-chip">Proyectos · Sistemas</span>
+        </div>
+        <p class="tool-use">
+          Lo uso para <strong>ejecutar proyectos completos, escribir estrategias y construir sistemas.</strong> Es el más inteligente para razonar y seguir instrucciones complejas sin perderse.
+        </p>
+        <div class="tool-steps">
+          <div class="step">
+            <span class="step-dot">1</span>
+            <span class="step-text"><strong>Entra a claude.ai</strong> y crea tu cuenta gratis</span>
+          </div>
+          <div class="step">
+            <span class="step-dot">2</span>
+            <span class="step-text">Crea un <strong>Proyecto</strong> con el contexto de tu negocio — así no repites información cada vez</span>
+          </div>
+          <div class="step">
+            <span class="step-dot">3</span>
+            <span class="step-text">Primer uso: <strong>"Ayúdame a crear un plan de contenido para esta semana para mi negocio de [rubro]"</strong></span>
+          </div>
+        </div>
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-link">
+          Abrir Claude →
+        </a>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTA 3: Notion -->
+    <div class="tool-card">
+      <div class="tool-num">3</div>
+      <div class="tool-body">
+        <div class="tool-header">
+          <span class="tool-name">Notion</span>
+          <span class="tool-chip">Sistema · Organización</span>
+        </div>
+        <p class="tool-use">
+          Lo uso para <strong>organizar todo el sistema.</strong> Aquí vive tu plan de contenido, tus clientes, tus proyectos. Es el cerebro central que conecta todo.
+        </p>
+        <div class="tool-steps">
+          <div class="step">
+            <span class="step-dot">1</span>
+            <span class="step-text"><strong>Entra a notion.so</strong> y crea tu cuenta gratis</span>
+          </div>
+          <div class="step">
+            <span class="step-dot">2</span>
+            <span class="step-text">Crea una página llamada <strong>"Mi Sistema IA"</strong> — ahí metes todo lo que vas construyendo</span>
+          </div>
+          <div class="step">
+            <span class="step-dot">3</span>
+            <span class="step-text">Usa el <strong>AI de Notion</strong> (botón espaciador) para generar tablas y contenido directo en la página</span>
+          </div>
+        </div>
+        <a href="https://notion.so" target="_blank" rel="noopener" class="tool-link">
+          Abrir Notion →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PIRÁMIDE -->
+<section class="section pyramid-section">
+  <div class="section-tag">La Pirámide</div>
+  <h2 class="section-title">Los 5 niveles. <span>Tu mapa completo.</span></h2>
+  <p class="section-desc">Cada nivel construye el siguiente. Saber dónde estás te dice exactamente qué hacer ahora.</p>
+
+  <div class="levels">
+
+    <!-- NIVEL 1 -->
+    <div class="level-card">
+      <div class="level-num-wrap">
+        <div class="level-num lvl-1">1</div>
+      </div>
+      <div class="level-body">
+        <div class="level-name">Conocimiento</div>
+        <span class="level-tag tag-base">Punto de partida</span>
+        <p class="level-desc">
+          Aprendes qué es la IA y para qué sirve en tu negocio. <strong>Entiendes las herramientas básicas</strong> y cómo pueden reemplazar tiempo y esfuerzo manual. Aquí empieza todo.
+        </p>
+        <div class="level-you">⚡ El acceso a este nivel ya está desbloqueado</div>
+      </div>
+    </div>
+
+    <!-- NIVEL 2 -->
+    <div class="level-card">
+      <div class="level-num-wrap">
+        <div class="level-num lvl-2">2</div>
+      </div>
+      <div class="level-body">
+        <div class="level-name">Habilidad</div>
+        <span class="level-tag tag-base">Práctica real</span>
+        <p class="level-desc">
+          Dejas de ver tutoriales y <strong>empiezas a ejecutar.</strong> Creas tu primer contenido con IA, automatizas una tarea repetitiva y construyes tu flujo de trabajo.
+        </p>
+      </div>
+    </div>
+
+    <!-- NIVEL 3 -->
+    <div class="level-card">
+      <div class="level-num-wrap">
+        <div class="level-num lvl-3">3</div>
+      </div>
+      <div class="level-body">
+        <div class="level-name">Red</div>
+        <span class="level-tag tag-top">Comunidad</span>
+        <p class="level-desc">
+          Te conectas con otros que están construyendo lo mismo. <strong>La red multiplica tu velocidad</strong> — aprendes más rápido, evitas errores ajenos y consigues tus primeros clientes.
+        </p>
+      </div>
+    </div>
+
+    <!-- NIVEL 4 -->
+    <div class="level-card">
+      <div class="level-num-wrap">
+        <div class="level-num lvl-4">4</div>
+      </div>
+      <div class="level-body">
+        <div class="level-name">Recursos</div>
+        <span class="level-tag tag-top">Monetización</span>
+        <p class="level-desc">
+          Tu sistema empieza a generar ingresos. <strong>Tienes clientes, contenido constante y automatizaciones activas.</strong> Dejas de intercambiar tiempo por dinero.
+        </p>
+      </div>
+    </div>
+
+    <!-- NIVEL 5 -->
+    <div class="level-card">
+      <div class="level-num-wrap">
+        <div class="level-num lvl-5">5</div>
+      </div>
+      <div class="level-body">
+        <div class="level-name">Reputación</div>
+        <span class="level-tag tag-elite">La cima</span>
+        <p class="level-desc">
+          Eres reconocido en tu mercado. <strong>Los clientes te buscan a ti.</strong> Tu marca personal trabaja mientras tú duermes. Este nivel no se compra — se construye con los 4 anteriores.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA FINAL -->
+<div class="cta-section">
+  <h2 class="cta-title">El Nivel 1 ya está<br><span>desbloqueado para ti.</span></h2>
+  <p class="cta-sub">
+    Únete a la comunidad Sistema Creador IA en Skool.<br>
+    Gratis. Sin trampa. Empieza hoy.
+  </p>
+  <a href="https://www.skool.com/sistema-creador-ia-2270/about" target="_blank" rel="noopener" class="btn-primary">
+    ⚡ Entrar a la Comunidad Ahora
+  </a>
+  <p class="cta-note">Gratis · Sin tarjeta · Acceso inmediato</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Sistema</span> &gt; Esfuerzo &nbsp;·&nbsp; York Martínez · Publicista Digital Anyork
+</div>
+
+</body>
+</html>
