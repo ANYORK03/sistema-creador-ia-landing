@@ -711,10 +711,291 @@
   <span>Sistema</span> &gt; Esfuerzo &nbsp;·&nbsp; York Martínez · Publicista Digital Anyork
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-  function descargarPDF() {
-    window.print();
+function descargarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+  const W = 210, M = 18, CW = W - M * 2;
+  let y = 0;
+
+  // ── helpers ──────────────────────────────────────────────
+  function checkPage(need) {
+    if (y + need > 272) { doc.addPage(); y = 18; }
   }
+  function fillRounded(x, fy, w, h, r, color) {
+    doc.setFillColor(...color);
+    doc.roundedRect(x, fy, w, h, r, r, 'F');
+  }
+  function text(str, tx, ty, opts) {
+    doc.text(str, tx, ty, opts || {});
+  }
+  function wrapped(str, tx, ty, maxW, lineH) {
+    const lines = doc.splitTextToSize(str, maxW);
+    doc.text(lines, tx, ty);
+    return lines.length * lineH;
+  }
+
+  // ── PORTADA ──────────────────────────────────────────────
+  // Fondo negro
+  doc.setFillColor(0, 0, 0);
+  doc.rect(0, 0, 210, 297, 'F');
+
+  // Franja verde superior
+  doc.setFillColor(167, 255, 31);
+  doc.rect(0, 0, 210, 8, 'F');
+
+  // Título
+  doc.setTextColor(167, 255, 31);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(28);
+  text('KIT DE INICIO IA', M, 50);
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(16);
+  text('Las 3 herramientas que uso todos los días', M, 62);
+  text('+ La Pirámide de los 5 Niveles', M, 72);
+
+  // Línea divisora
+  doc.setDrawColor(167, 255, 31);
+  doc.setLineWidth(0.5);
+  doc.line(M, 80, W - M, 80);
+
+  // Bio
+  doc.setTextColor(180, 180, 180);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  wrapped('No es teoría. Es el stack exacto que uso para generar contenido, ejecutar proyectos y mantener mi sistema organizado.', M, 90, CW, 5);
+
+  // Autor
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  text('York Martínez', M, 130);
+  doc.setTextColor(167, 255, 31);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  text('@primerempleadoia  ·  Tu Primer Empleado IA', M, 138);
+
+  // Tag SISTEMA > ESFUERZO
+  fillRounded(M, 148, 70, 9, 2, [167, 255, 31]);
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  text('SISTEMA > ESFUERZO', M + 5, 154);
+
+  // Franja verde inferior
+  doc.setFillColor(167, 255, 31);
+  doc.rect(0, 289, 210, 8, 'F');
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  text('sistema-creador-ia-landing.vercel.app', W / 2, 294.5, { align: 'center' });
+
+  // ── PÁGINA 2: HERRAMIENTAS ────────────────────────────────
+  doc.addPage();
+  doc.setFillColor(255, 255, 255);
+  doc.rect(0, 0, 210, 297, 'F');
+  y = 18;
+
+  // Encabezado sección
+  doc.setFillColor(0, 0, 0);
+  doc.rect(0, 0, 210, 12, 'F');
+  doc.setTextColor(167, 255, 31);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  text('KIT DE INICIO IA  —  YORK MARTÍNEZ', W / 2, 8, { align: 'center' });
+
+  y = 22;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  text('3 Herramientas. 1 Sistema.', M, y); y += 7;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  text('Estas son las únicas que necesitas para empezar.', M, y); y += 10;
+
+  const tools = [
+    {
+      num: '1', name: 'ChatGPT', chip: 'Diseño · Contenido', link: 'chat.openai.com',
+      use: 'Lo uso para crear imágenes, diseños visuales y tareas básicas de contenido. Es tu asistente creativo.',
+      steps: [
+        'Entra a chat.openai.com y crea una cuenta gratis',
+        'Usa el modelo GPT-4o — tiene generación de imágenes incluida',
+        'Primer prompt: "Crea una imagen para mi negocio de [rubro] estilo profesional, fondo oscuro"'
+      ]
+    },
+    {
+      num: '2', name: 'Claude', chip: 'Proyectos · Sistemas', link: 'claude.ai',
+      use: 'Lo uso para ejecutar proyectos completos, escribir estrategias y construir sistemas.',
+      steps: [
+        'Entra a claude.ai y crea tu cuenta gratis',
+        'Crea un Proyecto con el contexto de tu negocio — así no repites información cada vez',
+        'Primer uso: "Ayúdame a crear un plan de contenido para esta semana para mi negocio de [rubro]"'
+      ]
+    },
+    {
+      num: '3', name: 'Notion', chip: 'Sistema · Organización', link: 'notion.so',
+      use: 'Lo uso para organizar todo el sistema. Aquí vive tu plan de contenido, clientes y proyectos.',
+      steps: [
+        'Entra a notion.so y crea tu cuenta gratis',
+        'Crea una página llamada "Mi Sistema IA" — ahí metes todo lo que vas construyendo',
+        'Usa el AI de Notion (botón espaciador) para generar tablas y contenido directo'
+      ]
+    }
+  ];
+
+  tools.forEach(t => {
+    checkPage(52);
+    // Tarjeta fondo
+    fillRounded(M - 2, y - 4, CW + 4, 52, 3, [245, 245, 245]);
+    // Número
+    fillRounded(M + 1, y - 2, 9, 9, 1.5, [167, 255, 31]);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    text(t.num, M + 5.5, y + 4.5, { align: 'center' });
+    // Nombre
+    doc.setFontSize(13);
+    text(t.name, M + 13, y + 5);
+    // Chip
+    doc.setFillColor(220, 255, 150);
+    doc.roundedRect(M + 13 + doc.getTextWidth(t.name) + 3, y - 1, doc.getTextWidth(t.chip) + 6, 7, 1.5, 1.5, 'F');
+    doc.setTextColor(30, 100, 0);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    text(t.chip, M + 13 + doc.getTextWidth(t.name) + 6, y + 4.5);
+    // Descripción
+    y += 11;
+    doc.setTextColor(60, 60, 60);
+    doc.setFontSize(8.5);
+    doc.setFont('helvetica', 'normal');
+    const uLines = doc.splitTextToSize(t.use, CW - 5);
+    doc.text(uLines, M + 1, y);
+    y += uLines.length * 4 + 2;
+    // Pasos
+    t.steps.forEach((s, i) => {
+      // Círculo numerado
+      doc.setFillColor(200, 240, 120);
+      doc.circle(M + 4, y - 0.5, 2.2, 'F');
+      doc.setTextColor(0, 80, 0);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(6.5);
+      text(String(i + 1), M + 4, y + 0.8, { align: 'center' });
+      // Texto
+      doc.setTextColor(50, 50, 50);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      const sLines = doc.splitTextToSize(s, CW - 12);
+      doc.text(sLines, M + 8, y + 0.5);
+      y += sLines.length * 3.8 + 1.5;
+    });
+    // Link
+    doc.setTextColor(0, 130, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    text('→ ' + t.link, M + 2, y + 1);
+    y += 10;
+  });
+
+  // ── PÁGINA 3: PIRÁMIDE ────────────────────────────────────
+  doc.addPage();
+  doc.setFillColor(255, 255, 255);
+  doc.rect(0, 0, 210, 297, 'F');
+
+  doc.setFillColor(0, 0, 0);
+  doc.rect(0, 0, 210, 12, 'F');
+  doc.setTextColor(167, 255, 31);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  text('LA PIRÁMIDE  —  YORK MARTÍNEZ', W / 2, 8, { align: 'center' });
+
+  y = 22;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  text('Los 5 Niveles. Tu Mapa Completo.', M, y); y += 7;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  text('Saber dónde estás te dice exactamente qué hacer ahora.', M, y); y += 12;
+
+  const levels = [
+    { num: 1, name: 'Conocimiento', tag: 'Punto de partida', color: [230, 255, 180], badge: '⚡ Nivel desbloqueado para ti',
+      desc: 'Aprendes qué es la IA y para qué sirve en tu negocio. Entiendes las herramientas básicas y cómo pueden reemplazar tiempo y esfuerzo manual.' },
+    { num: 2, name: 'Habilidad', tag: 'Práctica real', color: [210, 255, 140],
+      desc: 'Dejas de ver tutoriales y empiezas a ejecutar. Creas tu primer contenido con IA, automatizas una tarea repetitiva y construyes tu flujo de trabajo.' },
+    { num: 3, name: 'Red', tag: 'Comunidad', color: [190, 255, 100],
+      desc: 'Te conectas con otros que están construyendo lo mismo. La red multiplica tu velocidad — aprendes más rápido y consigues tus primeros clientes.' },
+    { num: 4, name: 'Recursos', tag: 'Monetización', color: [167, 255, 31],
+      desc: 'Tu sistema empieza a generar ingresos. Tienes clientes, contenido constante y automatizaciones activas. Dejas de intercambiar tiempo por dinero.' },
+    { num: 5, name: 'Reputación', tag: 'La Cima', color: [100, 200, 0],
+      desc: 'Eres reconocido en tu mercado. Los clientes te buscan a ti. Tu marca personal trabaja mientras tú duermes. Se construye con los 4 anteriores.' }
+  ];
+
+  levels.forEach(l => {
+    checkPage(32);
+    const cardH = l.badge ? 34 : 28;
+    // Borde izquierdo de color
+    doc.setFillColor(...l.color);
+    doc.roundedRect(M - 2, y - 3, 4, cardH, 1, 1, 'F');
+    // Número
+    doc.setFillColor(...l.color);
+    doc.circle(M + 8, y + 4, 5.5, 'F');
+    doc.setTextColor(l.num >= 4 ? 255 : 0, l.num >= 4 ? 255 : 0, l.num >= 4 ? 255 : 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    text(String(l.num), M + 8, y + 6.5, { align: 'center' });
+    // Nombre
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    text(l.name, M + 17, y + 4);
+    // Tag
+    doc.setFillColor(240, 240, 240);
+    const tagW = doc.getTextWidth(l.tag) + 6;
+    doc.roundedRect(M + 17, y + 6, tagW, 5.5, 1, 1, 'F');
+    doc.setTextColor(80, 80, 80);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    text(l.tag, M + 20, y + 10);
+    // Descripción
+    y += 15;
+    doc.setTextColor(60, 60, 60);
+    doc.setFontSize(8.5);
+    const dLines = doc.splitTextToSize(l.desc, CW - 18);
+    doc.text(dLines, M + 17, y);
+    y += dLines.length * 4;
+    // Badge especial
+    if (l.badge) {
+      doc.setFillColor(167, 255, 31);
+      doc.roundedRect(M + 17, y + 1, doc.getTextWidth(l.badge) + 8, 6, 1.5, 1.5, 'F');
+      doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7.5);
+      text(l.badge, M + 21, y + 5.5);
+      y += 8;
+    }
+    y += 6;
+  });
+
+  // CTA final en página 3
+  checkPage(24);
+  y += 4;
+  doc.setFillColor(0, 0, 0);
+  doc.roundedRect(M, y, CW, 18, 3, 3, 'F');
+  doc.setTextColor(167, 255, 31);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  text('⚡  Únete a Sistema Creador IA — GRATIS', W / 2, y + 7, { align: 'center' });
+  doc.setTextColor(200, 200, 200);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  text('skool.com/sistema-creador-ia-2270', W / 2, y + 13.5, { align: 'center' });
+
+  doc.save('Kit-Inicio-IA-York-Martinez.pdf');
+}
 </script>
 
 </body>
