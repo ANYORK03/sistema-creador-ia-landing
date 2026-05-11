@@ -590,12 +590,20 @@
     const nombre = form.nombre.value.trim();
     const email  = form.email.value.trim();
 
-    // Guardar en Formspree — reemplaza YOUR_FORM_ID con tu ID
+    // Guardar en MailerLite
     try {
-      await fetch('https://formspree.io/f/mrejyrod', {
+      await fetch('https://connect.mailerlite.com/api/subscribers', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ nombre, email })
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmJiYjFjNDliNzExZDNlZGQ1YWJkYjc3MjNlNGVmODFjZjc4MzljYzFiMDU0YzRiNDJkNWQ4MzI3ZmYxMWUyNmQ4MTlmZmZlYjhjNDI3OTkiLCJpYXQiOjE3Nzg0ODAwNjMuODk3NjI1LCJuYmYiOjE3Nzg0ODAwNjMuODk3NjI4LCJleHAiOjQ5MzQxNTM2NjMuODkxMDksInN1YiI6IjIxMjUzMDAiLCJzY29wZXMiOltdfQ.Uw2HFR-C0arAr53ugSx8MfY2OFJAFKpQ4_S_91A-b4Jx4dsPNtEoAL8yCLuZIRTEQV_jOHK28Ce9LTWoadXkqjqy7CmNfXsjCDdt_RFs5XhT6a3YWblU_X7Wl9VHmaw-10SVvO7qUebuB2LL-Siz8dINrGRBSf2BWMP1FfPIyj5UzSkYWTF7C-0tarythHYg5xdWWvERB-Iz75bJkVHo5xgl29IwrhTo33W28VvQOg5yt2gvb2I5qifmzpx4oGsXRs-vsY212seNxyJPoPFgvgmjYDgXvazB7WrTeLcOmNx-EGjSdS3E76vs-fTHNFPpLOU37jx0-CCgeZAdvMmrN302A9s-chiFwbu6WztgRQN3Usmf-O4Jvmkc6c8BNPsKyDSld4-xVHF8Nsx5Ah8IIp46w2muM8FDe6zpKCIh_aIChA1pDO-fXGuY4JfRVvswsr7ToJ2t-NA9ZOQwKl1zTj_zo3iqUclJ8wp_Id3RHLeJJjh6zgzA3dCsXbXsB-BFZiXYUI7qszXsSQIOtT6X8yxk-od5w_RVvpUl0371YkiRUKkGjFbXj2KxeXnjtP0R6IEw4Q9FpsFBXQnX8LjI4nzWFSNeAYdeekoftoshbQY0JMg_J7WwRL_UAKsToZRYnCfAebgQ_5tN0vdK2M4jKWz1lLT2GKMVLNGUbVuVi3s'
+        },
+        body: JSON.stringify({
+          email,
+          fields: { name: nombre },
+          status: 'active'
+        })
       });
     } catch(err) { /* falla silenciosamente */ }
 
