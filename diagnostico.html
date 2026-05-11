@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico del Empleado Digital — York Martínez</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%23A7FF1F'/></svg>" />
+  <meta name="description" content="Descubre cuántas horas pierde tu negocio sin IA cada semana. 5 preguntas. Diagnóstico gratis y personalizado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --neon: #A7FF1F;
+      --white: #FFFFFF;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px 48px;
+    }
+
+    /* ── HEADER ── */
+    .top-bar {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .top-logo {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--neon);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .top-logo span { color: #333; }
+    .top-back {
+      font-size: 12px;
+      color: #333;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .top-back:hover { color: #666; }
+
+    /* ── WIDGET ── */
+    .dqw { width: 100%; max-width: 620px; font-family: var(--font-sans); }
+    .dq { background:#0a0a0a; border-radius:16px; width:100%; border:1px solid #1c1c1c; overflow:hidden; }
+    .dq-head { background:#0d0d0d; border-bottom:1px solid #161616; padding:.8rem 1.4rem; display:flex; align-items:center; justify-content:space-between; }
+    .dq-logo { font-size:11px; font-weight:600; color:#A7FF1F; letter-spacing:1px; text-transform:uppercase; }
+    .dq-logo span { color:#333; }
+    .dq-step-label { font-size:11px; color:#333; }
+    .dq-progress { height:2px; background:#141414; }
+    .dq-progress-fill { height:100%; background:#A7FF1F; transition:width .4s ease; }
+    .dq-body { padding:1.75rem 1.6rem; }
+    .dq-screen { display:none; } .dq-screen.on { display:block; }
+    .dq-chip { display:inline-block; background:#111f00; color:#A7FF1F; font-size:10px; font-weight:600; padding:3px 11px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; margin-bottom:1.1rem; border:1px solid #1e3a00; }
+    .dq-h1 { font-size:20px; font-weight:500; color:#f0f0f0; line-height:1.4; margin:0 0 .5rem; }
+    .dq-sub { font-size:13px; color:#555; line-height:1.7; margin:0 0 1.4rem; }
+    .dq-benefits { background:#0d0d0d; border:1px solid #181818; border-radius:10px; padding:.9rem 1.1rem; margin-bottom:1.5rem; }
+    .dq-benefit { display:flex; align-items:center; gap:10px; padding:.35rem 0; font-size:13px; color:#777; }
+    .dq-benefit i { color:#A7FF1F; font-size:15px; flex-shrink:0; }
+    .dq-cta-main { width:100%; background:#A7FF1F; color:#000; border:none; border-radius:9px; padding:.8rem 1.4rem; font-size:14px; font-weight:600; cursor:pointer; font-family:var(--font-sans); display:flex; align-items:center; justify-content:center; gap:7px; transition:background .15s; }
+    .dq-cta-main:hover { background:#beff40; }
+    .dq-byline { text-align:center; font-size:11px; color:#282828; margin-top:.6rem; }
+    .dq-q-meta { font-size:10px; color:#383838; text-transform:uppercase; letter-spacing:.8px; margin-bottom:.4rem; }
+    .dq-q-text { font-size:16px; font-weight:500; color:#eee; line-height:1.5; margin-bottom:1.1rem; }
+    .dq-opts { display:flex; flex-direction:column; gap:8px; }
+    .dq-opt { background:#0e0e0e; border:1px solid #1e1e1e; border-radius:9px; padding:.8rem 1rem; cursor:pointer; font-size:13px; color:#666; font-family:var(--font-sans); display:flex; align-items:center; gap:11px; text-align:left; width:100%; transition:border-color .15s,background .15s,color .15s; }
+    .dq-opt:hover { border-color:#2e4a00; background:#0b1500; color:#bbb; }
+    .dq-opt.sel { border-color:#A7FF1F; background:#0c1800; color:#A7FF1F; }
+    .dq-dot { width:17px; height:17px; border-radius:50%; border:1.5px solid #2e2e2e; flex-shrink:0; position:relative; transition:border-color .15s,background .15s; }
+    .dq-opt.sel .dq-dot { border-color:#A7FF1F; background:#A7FF1F; }
+    .dq-opt.sel .dq-dot::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:6px; height:6px; border-radius:50%; background:#000; }
+    .dq-nav { display:flex; gap:9px; margin-top:1.3rem; align-items:center; }
+    .dq-btn-next { flex:1; background:#A7FF1F; color:#000; border:none; border-radius:9px; padding:.75rem 1.1rem; font-size:13px; font-weight:600; cursor:pointer; font-family:var(--font-sans); transition:background .15s,opacity .15s; }
+    .dq-btn-next:hover { background:#beff40; }
+    .dq-btn-next:disabled { opacity:.25; cursor:not-allowed; }
+    .dq-btn-back { background:transparent; border:1px solid #1e1e1e; color:#3a3a3a; border-radius:9px; padding:.75rem .9rem; font-size:13px; cursor:pointer; font-family:var(--font-sans); flex-shrink:0; transition:border-color .15s,color .15s; }
+    .dq-btn-back:hover { border-color:#3a3a3a; color:#666; }
+    .dq-capture-title { font-size:18px; font-weight:500; color:#f0f0f0; line-height:1.4; margin-bottom:.4rem; }
+    .dq-capture-sub { font-size:13px; color:#555; line-height:1.65; margin-bottom:1.3rem; }
+    .dq-field { display:flex; flex-direction:column; gap:5px; margin-bottom:.9rem; }
+    .dq-field label { font-size:11px; color:#3a3a3a; text-transform:uppercase; letter-spacing:.5px; }
+    .dq-field input { background:#0e0e0e; border:1px solid #1e1e1e; border-radius:9px; padding:.75rem .9rem; font-size:14px; color:#eee; font-family:var(--font-sans); outline:none; transition:border-color .15s; width:100%; }
+    .dq-field input::placeholder { color:#2e2e2e; }
+    .dq-field input:focus { border-color:#A7FF1F; }
+    .dq-privacy { font-size:11px; color:#252525; margin-top:.5rem; text-align:center; }
+    .dq-res-top { text-align:center; padding-bottom:1.3rem; border-bottom:1px solid #141414; }
+    .dq-hello { font-size:12px; color:#3a3a3a; margin-bottom:.6rem; }
+    .dq-hello span { color:#A7FF1F; }
+    .dq-circle { width:100px; height:100px; border-radius:50%; border:2px solid #A7FF1F; display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto .9rem; background:#0c1800; }
+    .dq-circle-num { font-size:34px; font-weight:600; color:#A7FF1F; line-height:1; }
+    .dq-circle-lbl { font-size:9px; color:#4a6a00; text-transform:uppercase; letter-spacing:.4px; text-align:center; margin-top:3px; line-height:1.3; }
+    .dq-pname { font-size:19px; font-weight:500; color:#f0f0f0; margin:.4rem 0 .3rem; }
+    .dq-pdesc { font-size:13px; color:#4a4a4a; max-width:360px; margin:0 auto; line-height:1.6; }
+    .dq-level { background:#0d0d0d; border:1px solid #181818; border-radius:10px; padding:.9rem 1.1rem; margin-top:1.1rem; display:flex; align-items:center; gap:11px; }
+    .dq-level-icon { width:36px; height:36px; border-radius:7px; background:#111f00; border:1px solid #1e3a00; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .dq-level-icon i { color:#A7FF1F; font-size:17px; }
+    .dq-level-info { flex:1; }
+    .dq-level-label { font-size:9px; color:#333; text-transform:uppercase; letter-spacing:.7px; margin-bottom:2px; }
+    .dq-level-name { font-size:13px; font-weight:500; color:#A7FF1F; }
+    .dq-level-desc { font-size:11px; color:#484848; margin-top:2px; line-height:1.4; }
+    .dq-systems { background:#0c0c0c; border:1px solid #181818; border-radius:10px; padding:1rem 1.1rem; margin-top:.9rem; }
+    .dq-sys-title { font-size:9px; color:#333; text-transform:uppercase; letter-spacing:.8px; margin-bottom:.8rem; }
+    .dq-sys-item { display:flex; align-items:flex-start; gap:11px; padding:.55rem 0; border-bottom:1px solid #131313; }
+    .dq-sys-item:last-child { border-bottom:none; }
+    .dq-sys-icon { width:30px; height:30px; border-radius:7px; background:#111f00; border:1px solid #1e3a00; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .dq-sys-icon i { color:#A7FF1F; font-size:14px; }
+    .dq-sys-info h4 { font-size:13px; font-weight:500; color:#ddd; margin:0 0 2px; }
+    .dq-sys-info p { font-size:11px; color:#444; margin:0; line-height:1.4; }
+    .dq-cta-box { margin-top:1.1rem; background:#0b1800; border:1px solid #1c3600; border-radius:10px; padding:1.3rem; text-align:center; }
+    .dq-cta-box-title { font-size:14px; font-weight:500; color:#eee; margin-bottom:.35rem; }
+    .dq-cta-box-sub { font-size:12px; color:#3e5a00; line-height:1.6; margin-bottom:1rem; }
+    .dq-btn-skool { display:inline-flex; align-items:center; justify-content:center; gap:7px; background:#A7FF1F; color:#000; border:none; border-radius:9px; padding:.8rem 1.5rem; font-size:13px; font-weight:600; cursor:pointer; font-family:var(--font-sans); text-decoration:none; transition:background .15s; width:100%; }
+    .dq-btn-skool:hover { background:#beff40; }
+    .dq-skool-note { font-size:10px; color:#263a00; margin-top:.5rem; }
+    .dq-restart { background:transparent; border:none; color:#252525; font-size:11px; cursor:pointer; font-family:var(--font-sans); display:block; margin:.8rem auto 0; text-decoration:underline; padding:.2rem; }
+    .dq-restart:hover { color:#555; }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #282828;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .page-footer span { color: #A7FF1F; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="/" class="top-logo">Primer <span>Empleado IA</span></a>
+    <a href="/york.html" class="top-back">← Volver al perfil</a>
+  </div>
+
+  <div class="dqw">
+  <div class="dq">
+    <div class="dq-head">
+      <div class="dq-logo">SISTEMA <span>CREADOR IA</span></div>
+      <div class="dq-step-label" id="dq-step-lbl">Diagnóstico gratuito</div>
+    </div>
+    <div class="dq-progress"><div class="dq-progress-fill" id="dq-bar" style="width:0%"></div></div>
+
+    <div class="dq-body">
+
+      <div class="dq-screen on" id="sc-intro">
+        <div class="dq-chip">diagnóstico · gratis · 2 min</div>
+        <h1 class="dq-h1">¿Cuántas horas pierde tu negocio sin IA cada semana?</h1>
+        <p class="dq-sub">5 preguntas. Sin registro previo. Al final recibes tu perfil exacto y los 3 sistemas que necesitas instalar ahora.</p>
+        <div class="dq-benefits">
+          <div class="dq-benefit"><i class="ti ti-clock" aria-hidden="true"></i><span>Descubres cuántas horas exactas pierdes por semana</span></div>
+          <div class="dq-benefit"><i class="ti ti-user-check" aria-hidden="true"></i><span>Recibes tu perfil dentro de la Pirámide del Sistema Creador IA</span></div>
+          <div class="dq-benefit"><i class="ti ti-settings-automation" aria-hidden="true"></i><span>Conoces los 3 sistemas IA que resuelven tu punto de quiebre real</span></div>
+        </div>
+        <button class="dq-cta-main" onclick="dqStart()">
+          <i class="ti ti-arrow-right" aria-hidden="true"></i>
+          Empezar el diagnóstico
+        </button>
+        <div class="dq-byline">por @primerempleadoia · York Martínez</div>
+      </div>
+
+      <div class="dq-screen" id="sc-quiz">
+        <div class="dq-q-meta" id="q-meta">Pregunta 1 de 5</div>
+        <div class="dq-q-text" id="q-text"></div>
+        <div class="dq-opts" id="q-opts"></div>
+        <div class="dq-nav">
+          <button class="dq-btn-back" id="btn-back" style="display:none" onclick="dqBack()">← Atrás</button>
+          <button class="dq-btn-next" id="btn-next" disabled onclick="dqNext()">Siguiente →</button>
+        </div>
+      </div>
+
+      <div class="dq-screen" id="sc-capture">
+        <div class="dq-chip">casi listo</div>
+        <div class="dq-capture-title">¿A dónde enviamos tu diagnóstico?</div>
+        <p class="dq-capture-sub">Déjanos tu nombre y email y en 3 segundos ves tu perfil completo con los sistemas exactos que necesitas.</p>
+        <div class="dq-field">
+          <label for="cap-name">Tu nombre</label>
+          <input type="text" id="cap-name" placeholder="Ej. Carlos" autocomplete="given-name">
+        </div>
+        <div class="dq-field">
+          <label for="cap-email">Tu email</label>
+          <input type="email" id="cap-email" placeholder="tu@email.com" autocomplete="email">
+        </div>
+        <div style="margin-top:1.1rem">
+          <button class="dq-cta-main" id="btn-submit" onclick="dqSubmit()">
+            <i class="ti ti-chart-bar" aria-hidden="true"></i>
+            Ver mi diagnóstico completo
+          </button>
+        </div>
+        <div class="dq-privacy">Sin spam. Solo tu resultado y recursos que te sirven.</div>
+      </div>
+
+      <div class="dq-screen" id="sc-result">
+        <div class="dq-res-top">
+          <div class="dq-chip">tu diagnóstico</div>
+          <div class="dq-hello">Hola, <span id="r-hello-name">—</span></div>
+          <div class="dq-circle">
+            <div class="dq-circle-num" id="r-hours">—</div>
+            <div class="dq-circle-lbl">horas<br>perdidas/sem</div>
+          </div>
+          <div class="dq-pname" id="r-name">—</div>
+          <div class="dq-pdesc" id="r-desc">—</div>
+        </div>
+        <div class="dq-level">
+          <div class="dq-level-icon"><i class="ti ti-layers-subtract" id="r-level-icon"></i></div>
+          <div class="dq-level-info">
+            <div class="dq-level-label">Tu nivel en la Pirámide</div>
+            <div class="dq-level-name" id="r-level-name">—</div>
+            <div class="dq-level-desc" id="r-level-desc">—</div>
+          </div>
+        </div>
+        <div class="dq-systems">
+          <div class="dq-sys-title">Tus 3 sistemas prioritarios</div>
+          <div id="r-systems"></div>
+        </div>
+        <div class="dq-cta-box">
+          <div class="dq-cta-box-title">El siguiente paso es instalar el sistema</div>
+          <div class="dq-cta-box-sub">En el Sistema Creador IA aprenderás a montar cada uno de estos sistemas paso a paso. Sin teoría. Con resultados desde la primera semana.</div>
+          <a class="dq-btn-skool" href="https://www.skool.com/sistema-creador-ia-2270/about" target="_blank" rel="noopener">
+            <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            Entrar al Sistema Creador IA gratis
+          </a>
+          <div class="dq-skool-note">Comunidad gratuita en Skool · Acceso inmediato</div>
+        </div>
+        <button class="dq-restart" onclick="dqRestart()">Repetir el diagnóstico</button>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <p class="page-footer"><span>Sistema</span> > Esfuerzo · York Martínez · primerempleadoia.com</p>
+
+<script>
+var ML_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiOWNhOTE3MTdkOGZjM2EyOTM3NjkzNDU3ODc5ZWFmOGYzM2E3NDU1NTNiYTA5ZGNlZDQ0NjBiNjQ1ODg3YzVkNDdhYzBlYTFlYTBhMjNjZmIiLCJpYXQiOjE3Nzg0ODAyMzkuMDEwNjMzLCJuYmYiOjE3Nzg0ODAyMzkuMDEwNjM2LCJleHAiOjQ5MzQxNTM4MzkuMDA2MTg1LCJzdWIiOiIyMTI1MzAwIiwic2NvcGVzIjpbXX0.jhsHXgzxGkPVbawM8gCJA0Xtm7EW2_qIVUMoUGXCMQUAUyD4XNigsIgIGqG-WdGPkQkTUmCNO-CigZiBPALipQ0jqgZ6XitVPxeATDPGLQ1L34ex1rCMqTCu5a3himKQHc0MPy73zeJ_0qm-DeMfEHOSVkFjoaweg14H_g57hztyCs7FuTwwELwPpQf03lCW6Q6BbI-84EekT4Ci-uy5D6TWPpwe4D5ljFd2MAmBtXtdWuxqMDdDOX5bJUHudzFlKDDTZ0piMcmfaARD5xtzBLeHhNEsfyQrJhTYnyQ3_lZzpGo83dWN3kbQZNeyAuqipb6g-bG_zTbJwFe_bL93sW97j-qkVPfoi8WpXu8_CaBGtInKeFTAyA0k-nlAJBY2_IVoC1ohl6uRCaB5TQgZoFbaL1FA0smMi3LcHm-zQztIlKojF0U-V515MnLQekBtGhXrAP5YVUj2Tyf98JF19bQtwaYu7pjHSTa_LeTnNxYkXyb327rzLEV2Lzud0E_nNEbvXaczPQjN7Jk-ebQm4TJTAonaBxVZ9ZVPsgqgg3RVbXhHFL4h7JoyYJirV_nEYQR015HKnEESct9wQQxxpGpOIG2JTm7tic-AgyfnOSFCgG5dv4jQn6il5VTPTryCfiVw6dkmsb4A4iMKjcvrpMYW3VgDaQpubpMcBH2N19o';
+
+var DQ_Qs=[
+  {text:"¿Cuántas horas trabajas en tu negocio o proyecto digital por semana?",opts:[{t:"Menos de 20 horas — es un proyecto paralelo",s:1},{t:"Entre 20 y 40 horas — le dedico bastante tiempo",s:2},{t:"Entre 40 y 60 horas — casi tiempo completo",s:3},{t:"Más de 60 horas — trabajo sin parar",s:4}]},
+  {text:"Cuando tienes una idea para publicar, ¿cuánto tarda en aparecer en redes?",opts:[{t:"Menos de 2 horas — la ejecuto rápido",s:1},{t:"Ese mismo día o al siguiente",s:2},{t:"Varios días — me cuesta arrancar y terminar",s:3},{t:"Semanas... o nunca llega a publicarse",s:4}]},
+  {text:"¿Cómo describes tu relación actual con la inteligencia artificial?",opts:[{t:"No la uso — no sé por dónde empezar",s:4},{t:"La probé, pero no le vi utilidad real en mi día a día",s:3},{t:"Uso ChatGPT de vez en cuando para cosas sueltas",s:2},{t:"Ya tengo flujos o sistemas con IA en mi proceso",s:1}]},
+  {text:"¿Cuál es tu mayor bloqueo a la hora de crear contenido?",opts:[{t:"No tengo tiempo — el trabajo y la vida me consumen primero",s:4},{t:"No sé qué publicar — me quedo en blanco",s:3},{t:"Empiezo pero no termino — dejo todo a medias",s:3},{t:"Publico, pero no crece — el contenido no genera resultados",s:2}]},
+  {text:"¿Cuánto tiempo llevas intentando publicar de manera consistente?",opts:[{t:"Menos de 3 meses — estoy empezando",s:1},{t:"Entre 3 y 6 meses — sigo en el intento",s:2},{t:"Entre 6 meses y 1 año — no logro sostenerlo",s:3},{t:"Más de 1 año — sigo en el mismo punto de partida",s:4}]}
+];
+
+var DQ_PROFILES=[
+  {min:5,max:9,name:"El Casi Listo",hours:7,desc:"Tienes las bases. Tu proceso está casi armado pero le falta la pieza que conecta todo. Con los sistemas correctos publicas todos los días en menos de 2 horas.",level:{name:"Nivel 2 — Habilidad",desc:"Ya tienes el conocimiento. El siguiente paso es construir sistemas que ejecuten por ti.",icon:"ti-tools"},sys:[{icon:"ti-settings-automation",title:"Sistema de publicación automatizada",desc:"Programa una semana completa de contenido en 30 minutos"},{icon:"ti-bulb",title:"Banco de ideas con IA",desc:"Nunca más te quedas sin saber qué publicar"},{icon:"ti-refresh",title:"Repurposing en 3 clicks",desc:"Un post se convierte en 5 formatos distintos de forma automática"}]},
+  {min:10,max:13,name:"El Creador Sin Sistema",hours:12,desc:"Tienes el contenido en la cabeza pero el proceso para sacarlo te consume demasiado tiempo. Necesitas un flujo que convierta ideas en posts listos en minutos.",level:{name:"Nivel 1 — Conocimiento",desc:"Sabes lo que quieres hacer. Falta el sistema que lo convierte en acción consistente.",icon:"ti-brain"},sys:[{icon:"ti-edit",title:"Flujo de guión en 20 minutos",desc:"De idea cruda a caption listo para publicar en una sola sesión"},{icon:"ti-robot",title:"Sistema de captions con IA",desc:"Tu voz, tu tono, generado por IA en menos de 5 minutos"},{icon:"ti-calendar",title:"Calendario editorial automatizado",desc:"Tu semana de contenido lista cada domingo en 1 hora"}]},
+  {min:14,max:17,name:"El Atrapado Digital",hours:18,desc:"Quieres publicar pero el proceso te consume antes de empezar. El problema no es la disciplina — es que tu proceso está roto y necesita reconstruirse con IA.",level:{name:"Nivel 1 — Conocimiento",desc:"El punto de quiebre está en el proceso, no en la motivación. Un sistema lo resuelve.",icon:"ti-brain"},sys:[{icon:"ti-rocket",title:"Motor de contenido diario",desc:"Un sistema que produce aunque no tengas energía ni inspiración"},{icon:"ti-device-mobile",title:"Automatización de publicación",desc:"Tu contenido programado y publicado solo en todas las plataformas"},{icon:"ti-arrows-exchange",title:"Repurposing multi-plataforma",desc:"Un video se convierte en contenido para 3 redes distintas"}]},
+  {min:18,max:20,name:"El Operador Desbordado",hours:25,desc:"Tu negocio crece pero sin IA estás haciendo todo a mano. Cada hora que no automatizas es tiempo que no recuperas. Es el momento de instalar tu Empleado Digital.",level:{name:"Nivel 4 — Recursos",desc:"Tienes operación pero te falta el sistema que la ejecute sin que tú estés presente.",icon:"ti-layers-subtract"},sys:[{icon:"ti-layout",title:"Empleado Digital IA completo",desc:"IA que escribe, programa y responde por ti mientras tú produces"},{icon:"ti-clock",title:"Contenido completo en 2 horas",desc:"Toda la semana de posts en una sola sesión cada domingo"},{icon:"ti-message-chatbot",title:"Automatización de respuestas y ventas",desc:"ManyChat + IA atiende leads y cierra ventas mientras duermes"}]}
+];
+
+var dqCur=0,dqAns=[],dqSel=null,dqUser='',dqProfile=null;
+
+function dqShow(id){['sc-intro','sc-quiz','sc-capture','sc-result'].forEach(function(s){document.getElementById(s).classList.toggle('on',s===id)})}
+function dqStart(){dqShow('sc-quiz');dqRender()}
+function dqRender(){
+  var q=DQ_Qs[dqCur];
+  var pct=Math.round((dqCur/DQ_Qs.length)*100);
+  document.getElementById('dq-bar').style.width=pct+'%';
+  document.getElementById('dq-step-lbl').textContent='Pregunta '+(dqCur+1)+' de '+DQ_Qs.length;
+  document.getElementById('q-meta').textContent='Pregunta '+(dqCur+1)+' de '+DQ_Qs.length;
+  document.getElementById('q-text').textContent=q.text;
+  var btnN=document.getElementById('btn-next');
+  var btnB=document.getElementById('btn-back');
+  btnB.style.display=dqCur>0?'block':'none';
+  dqSel=dqAns[dqCur]!==undefined?dqAns[dqCur]:null;
+  btnN.disabled=dqSel===null;
+  var c=document.getElementById('q-opts');
+  c.innerHTML='';
+  q.opts.forEach(function(opt){
+    var btn=document.createElement('button');
+    btn.className='dq-opt'+(dqAns[dqCur]===opt.s?' sel':'');
+    btn.innerHTML='<div class="dq-dot"></div><span>'+opt.t+'</span>';
+    btn.onclick=function(){
+      c.querySelectorAll('.dq-opt').forEach(function(b){b.classList.remove('sel')});
+      btn.classList.add('sel');dqSel=opt.s;btnN.disabled=false
+    };
+    c.appendChild(btn)
+  })
+}
+function dqNext(){
+  if(dqSel===null)return;
+  dqAns[dqCur]=dqSel;
+  if(dqCur<DQ_Qs.length-1){dqCur++;dqRender()}
+  else{
+    var total=dqAns.reduce(function(a,b){return a+b},0);
+    dqProfile=DQ_PROFILES.find(function(x){return total>=x.min&&total<=x.max})||DQ_PROFILES[DQ_PROFILES.length-1];
+    document.getElementById('dq-bar').style.width='90%';
+    document.getElementById('dq-step-lbl').textContent='Último paso';
+    dqShow('sc-capture');
+    setTimeout(function(){document.getElementById('cap-name').focus()},100)
+  }
+}
+function dqBack(){if(dqCur>0){dqCur--;dqRender()}}
+
+async function dqSubmit(){
+  var nEl=document.getElementById('cap-name');
+  var eEl=document.getElementById('cap-email');
+  var n=nEl.value.trim();
+  var e=eEl.value.trim();
+  if(!n){nEl.focus();nEl.style.borderColor='#A7FF1F';return}
+  if(!e||!e.includes('@')){eEl.focus();eEl.style.borderColor='#A7FF1F';return}
+  dqUser=n;
+
+  // Deshabilitar botón mientras envía
+  var btn=document.getElementById('btn-submit');
+  btn.disabled=true;
+  btn.innerHTML='<i class="ti ti-loader" aria-hidden="true"></i> Procesando...';
+
+  // Enviar a MailerLite
+  try {
+    await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + ML_API_KEY
+      },
+      body: JSON.stringify({
+        email: e,
+        fields: {
+          name: n,
+          last_name: dqProfile ? dqProfile.name : ''
+        },
+        status: 'active'
+      })
+    });
+  } catch(err) { /* falla silenciosamente */ }
+
+  dqShowResult();
+}
+
+function dqShowResult(){
+  var p=dqProfile;
+  document.getElementById('dq-bar').style.width='100%';
+  document.getElementById('dq-step-lbl').textContent='Tu diagnóstico';
+  document.getElementById('r-hello-name').textContent=dqUser||'tú';
+  document.getElementById('r-hours').textContent=p.hours;
+  document.getElementById('r-name').textContent=p.name;
+  document.getElementById('r-desc').textContent=p.desc;
+  document.getElementById('r-level-name').textContent=p.level.name;
+  document.getElementById('r-level-desc').textContent=p.level.desc;
+  document.getElementById('r-level-icon').className='ti '+p.level.icon;
+  var s=document.getElementById('r-systems');
+  s.innerHTML='';
+  p.sys.forEach(function(x){
+    s.innerHTML+='<div class="dq-sys-item"><div class="dq-sys-icon"><i class="ti '+x.icon+'" aria-hidden="true"></i></div><div class="dq-sys-info"><h4>'+x.title+'</h4><p>'+x.desc+'</p></div></div>'
+  });
+  dqShow('sc-result');
+}
+
+function dqRestart(){
+  dqCur=0;dqAns=[];dqSel=null;dqUser='';dqProfile=null;
+  document.getElementById('dq-bar').style.width='0%';
+  document.getElementById('dq-step-lbl').textContent='Diagnóstico gratuito';
+  document.getElementById('cap-name').value='';
+  document.getElementById('cap-email').value='';
+  var btn=document.getElementById('btn-submit');
+  btn.disabled=false;
+  btn.innerHTML='<i class="ti ti-chart-bar" aria-hidden="true"></i> Ver mi diagnóstico completo';
+  dqShow('sc-intro');
+}
+</script>
+
+</body>
+</html>
