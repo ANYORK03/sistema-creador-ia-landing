@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu Primer Empleado IA — Automatiza tu negocio con IA</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%23A7FF1F'/></svg>" />
+  <meta name="description" content="Tu Primer Empleado IA — Instalo sistemas que generan contenido, clientes y automatización para negocios hispanos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:        #000000;
+      --black-card:   #0A0A0A;
+      --black-border: #1C1C1C;
+      --neon:         #A7FF1F;
+      --neon-glow:    rgba(167,255,31,.15);
+      --white:        #FFFFFF;
+      --gray-text:    rgba(255,255,255,.55);
+      --gray-sub:     rgba(255,255,255,.28);
+      --gray-line:    #1A1A1A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 80px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--gray-line);
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: var(--neon);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-social a {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--gray-line);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all .2s;
+    }
+
+    .nav-social a:hover {
+      color: var(--neon);
+      border-color: var(--neon);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 32px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title strong {
+      color: var(--neon);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--gray-text);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* ── PATHWAYS ── */
+    .pathways {
+      width: 100%;
+      max-width: 440px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 24px;
+      margin-bottom: 24px;
+    }
+
+    .pathway {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--white);
+      transition: all .3s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pathway::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(167,255,31,.05) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .pathway:hover {
+      border-color: var(--neon);
+      background: rgba(167,255,31,.02);
+    }
+
+    .pathway:hover::before {
+      opacity: 1;
+    }
+
+    .pathway-icon {
+      font-size: 24px;
+    }
+
+    .pathway-label {
+      font-size: 13px;
+      color: var(--gray-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .pathway-title {
+      font-size: 16px;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pathway-desc {
+      font-size: 12px;
+      color: var(--gray-text);
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── LARGE CTA ── */
+    .cta-section {
+      width: 100%;
+      max-width: 440px;
+      padding: 0 24px;
+      margin-bottom: 32px;
+    }
+
+    .cta-large {
+      width: 100%;
+      background: var(--neon);
+      color: var(--black);
+      border: none;
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .3s;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+
+    .cta-large:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(167,255,31,.3);
+    }
+
+    .cta-large:active {
+      transform: translateY(0);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      width: 100%;
+      max-width: 440px;
+      padding: 24px 24px;
+      border-top: 1px solid var(--gray-line);
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--gray-sub);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--gray-text);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--neon);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      max-width: 440px;
+      height: 1px;
+      background: var(--gray-line);
+      margin: 24px 0;
+    }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 480px) {
+      .hero-title { font-size: 28px; }
+      .pathways { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <a href="/" class="logo" title="Tu Primer Empleado IA">IA</a>
+    <div class="nav-social">
+      <a href="https://instagram.com/primerempleadoia" target="_blank" rel="noopener" title="Instagram">📷</a>
+      <a href="https://facebook.com/primerempleadoia" target="_blank" rel="noopener" title="Facebook">📘</a>
+      <a href="https://youtube.com/@primerempleadoia" target="_blank" rel="noopener" title="YouTube">▶️</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 class="hero-title">Tu <strong>Primer Empleado</strong> IA</h1>
+    <p class="hero-subtitle">Instalo sistemas que generan contenido, clientes y automatización mientras tú duermes.</p>
+  </div>
+
+  <!-- PATHWAYS -->
+  <div class="pathways">
+
+    <!-- Pathway 1: York -->
+    <a href="/york.html" class="pathway">
+      <div class="pathway-icon">👤</div>
+      <div class="pathway-label">Conoce</div>
+      <div class="pathway-title">Quién Soy</div>
+      <div class="pathway-desc">Mi historia y cómo trabajo</div>
+    </a>
+
+    <!-- Pathway 2: Diagnóstico -->
+    <a href="/diagnostico.html" class="pathway">
+      <div class="pathway-icon">🔍</div>
+      <div class="pathway-label">Descubre</div>
+      <div class="pathway-title">Tu Perfil</div>
+      <div class="pathway-desc">Quiz gratuito de 2 minutos</div>
+    </a>
+
+    <!-- Pathway 3: Kit -->
+    <a href="/captura.html" class="pathway">
+      <div class="pathway-icon">🎁</div>
+      <div class="pathway-label">Obtén</div>
+      <div class="pathway-title">Kit Gratis</div>
+      <div class="pathway-desc">3 herramientas + guía</div>
+    </a>
+
+    <!-- Pathway 4: Skool -->
+    <a href="https://www.skool.com/sistema-creador-ia-2270/about" target="_blank" rel="noopener" class="pathway">
+      <div class="pathway-icon">🚀</div>
+      <div class="pathway-label">Acceso</div>
+      <div class="pathway-title">Comunidad</div>
+      <div class="pathway-desc">5 niveles de formación</div>
+    </a>
+
+  </div>
+
+  <!-- MAIN CTA -->
+  <div class="cta-section">
+    <a href="/captura.html" class="cta-large">Acceder al Kit de Inicio IA</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p class="footer-text">@primerempleadoia · York Martínez</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/primerempleadoia" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/17206943519" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:tuprimerempleadoia@gmail.com">Email</a>
+      <a href="https://www.skool.com/sistema-creador-ia-2270/about" target="_blank" rel="noopener">Skool</a>
+    </div>
+  </div>
+
+</body>
+</html>
