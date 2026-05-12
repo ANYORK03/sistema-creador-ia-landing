@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tu primer paso con IA — Sistema Creador IA</title>
-  <meta name="description" content="Empieza a usar IA hoy aunque no sepas nada. Acceso gratis al Nivel 1 + Kit de Inicio IA." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%231D4ED8'/></svg>" />
+  <title>Empieza con IA hoy — Tu Primer Empleado IA</title>
+  <meta name="description" content="Recibe gratis las 3 herramientas de IA que uso cada día para trabajar menos horas y conseguir más clientes." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231D4ED8'/><text y='.9em' font-size='80' x='10'>⚡</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -13,13 +13,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #FFFFFF;
+      --bg:      #FFFFFF;
       --card:    #F8FAFC;
       --border:  #E2E8F0;
-      --neon:    #1D4ED8;
-      --neon-dk: #1E40AF;
-      --neon-gl: rgba(29,78,216,.10);
-      --white:   #0F172A;
+      --blue:    #1D4ED8;
+      --blue-dk: #1E40AF;
+      --orange:  #F97316;
+      --orange-dk: #EA6C0A;
+      --text:    #0F172A;
       --gray:    #64748B;
       --muted:   #94A3B8;
     }
@@ -27,55 +28,41 @@
     html, body {
       min-height: 100vh;
       font-family: 'Inter', sans-serif;
-      background: var(--black);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
-    /* ── GRID BG ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(29,78,216,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(29,78,216,.025) 1px, transparent 1px);
-      background-size: 56px 56px;
-      pointer-events: none;
-      z-index: 0;
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      width: 100%;
+      background: #0F172A;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
     }
-
-    /* ── GLOW CENTER ── */
-    .glow {
-      position: fixed;
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(29,78,216,.09) 0%, transparent 65%);
-      top: 40%; left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .urgency-bar span { color: #F97316; font-weight: 800; }
 
     /* ── WRAPPER ── */
     .wrap {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
+      min-height: calc(100vh - 40px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 48px 24px 64px;
+      padding: 40px 24px 56px;
     }
 
-    /* ── LOGO TOP ── */
+    /* ── LOGO ── */
     .logo {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2px;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
     .logo-top {
       font-size: .6rem;
@@ -87,88 +74,80 @@
     .logo-main {
       font-size: .95rem;
       font-weight: 900;
-      letter-spacing: -.01em;
+      color: var(--text);
     }
-    .logo-main span { color: var(--neon); }
+    .logo-main span { color: var(--blue); }
 
     /* ── CARD ── */
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 52px 48px;
+      padding: 48px 44px;
       width: 100%;
-      max-width: 520px;
+      max-width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0;
-      box-shadow: 0 0 80px rgba(29,78,216,.06), 0 32px 64px rgba(0,0,0,.4);
+      box-shadow: 0 4px 6px rgba(0,0,0,.05), 0 20px 40px rgba(0,0,0,.08);
     }
 
     /* ── BADGE ── */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(29,78,216,.07);
-      border: 1px solid rgba(29,78,216,.25);
-      color: var(--neon);
+      gap: 7px;
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      color: var(--orange);
       font-size: .68rem;
       font-weight: 800;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: 7px 16px;
+      padding: 6px 14px;
       border-radius: 100px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .badge-dot {
       width: 6px; height: 6px;
-      background: var(--neon);
+      background: var(--orange);
       border-radius: 50%;
       animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
     @keyframes pulse {
       0%,100% { opacity: 1; transform: scale(1); }
       50% { opacity: .3; transform: scale(.7); }
     }
 
-    /* ── PYRAMID ICON ── */
-    .pyramid-icon {
-      margin-bottom: 24px;
-    }
-    .pyramid-icon svg {
-      width: 56px; height: 56px;
-      filter: drop-shadow(0 0 16px rgba(29,78,216,.4));
-    }
-
     /* ── HEADLINE ── */
     h1 {
-      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      font-size: clamp(1.75rem, 5vw, 2.3rem);
       font-weight: 900;
       letter-spacing: -.04em;
       line-height: 1.1;
       text-align: center;
+      color: var(--text);
       margin-bottom: 14px;
     }
-    h1 span { color: var(--neon); }
+    h1 span { color: var(--blue); }
 
     .subhead {
       font-size: .95rem;
       color: var(--gray);
       text-align: center;
       line-height: 1.65;
-      max-width: 380px;
-      margin-bottom: 32px;
+      max-width: 360px;
+      margin-bottom: 28px;
     }
-    .subhead strong { color: var(--white); }
+    .subhead strong { color: var(--text); }
 
     /* ── DIVIDER ── */
     .div {
       width: 100%;
       height: 1px;
       background: var(--border);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     /* ── BULLETS ── */
@@ -176,26 +155,26 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 36px;
+      gap: 11px;
+      margin-bottom: 28px;
     }
     .bullet {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 11px;
     }
     .bullet-check {
       width: 22px; height: 22px;
-      border-radius: 7px;
-      background: rgba(29,78,216,.1);
-      border: 1px solid rgba(29,78,216,.3);
+      border-radius: 6px;
+      background: #DCFCE7;
+      border: 1px solid #BBF7D0;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
       margin-top: 1px;
     }
     .bullet-check svg {
       width: 11px; height: 11px;
-      stroke: var(--neon);
+      stroke: #16A34A;
       stroke-width: 2.5;
     }
     .bullet-text {
@@ -203,14 +182,14 @@
       color: var(--gray);
       line-height: 1.5;
     }
-    .bullet-text strong { color: var(--white); }
+    .bullet-text strong { color: var(--text); }
 
     /* ── FORM ── */
     .form {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 11px;
     }
 
     .input-wrap {
@@ -219,7 +198,7 @@
     }
     .input-icon {
       position: absolute;
-      left: 16px; top: 50%;
+      left: 15px; top: 50%;
       transform: translateY(-50%);
       color: var(--muted);
       display: flex; align-items: center;
@@ -229,31 +208,32 @@
     input[type="text"],
     input[type="email"] {
       width: 100%;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
+      background: #fff;
+      border: 1.5px solid var(--border);
       border-radius: 12px;
-      padding: 16px 16px 16px 44px;
+      padding: 15px 15px 15px 42px;
       font-family: 'Inter', sans-serif;
       font-size: .9rem;
       font-weight: 500;
-      color: var(--white);
+      color: var(--text);
       outline: none;
       transition: border-color .2s, box-shadow .2s;
     }
     input::placeholder { color: var(--muted); }
     input:focus {
-      border-color: rgba(29,78,216,.4);
-      box-shadow: 0 0 0 3px rgba(29,78,216,.08);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(29,78,216,.1);
     }
 
+    /* ── CTA BUTTON — NARANJA (Von Restorff) ── */
     .btn-submit {
       width: 100%;
-      background: var(--neon);
-      color: #FFFFFF;
+      background: var(--orange);
+      color: #fff;
       font-family: 'Inter', sans-serif;
-      font-size: .95rem;
+      font-size: 1rem;
       font-weight: 900;
-      letter-spacing: .06em;
+      letter-spacing: .04em;
       text-transform: uppercase;
       padding: 18px;
       border-radius: 12px;
@@ -263,112 +243,68 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      box-shadow: 0 0 40px rgba(29,78,216,.2), 0 4px 20px rgba(0,0,0,.4);
+      box-shadow: 0 4px 14px rgba(249,115,22,.35);
       transition: all .2s;
       margin-top: 4px;
     }
     .btn-submit:hover {
-      background: var(--neon-dk);
+      background: var(--orange-dk);
       transform: translateY(-2px);
-      box-shadow: 0 0 60px rgba(29,78,216,.35), 0 8px 32px rgba(0,0,0,.5);
+      box-shadow: 0 8px 24px rgba(249,115,22,.45);
     }
+    .btn-submit:active { transform: translateY(0); }
     .btn-submit svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── URGENCY BAJO EL BOTÓN ── */
+    .btn-urgency {
+      font-size: .72rem;
+      color: #DC2626;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 8px;
+    }
 
     /* ── PRIVACY ── */
     .privacy {
-      margin-top: 16px;
+      margin-top: 10px;
       font-size: .72rem;
       color: var(--muted);
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
     }
     .privacy svg { width: 12px; height: 12px; flex-shrink: 0; }
 
     /* ── SOCIAL PROOF ── */
     .social-proof {
-      margin-top: 32px;
+      margin-top: 28px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,.03);
+      gap: 12px;
+      background: #fff;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 14px 20px;
+      padding: 14px 18px;
       width: 100%;
     }
-    .avatars {
-      display: flex;
-      margin-right: 4px;
-    }
-    .av {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 2px solid var(--black);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .62rem;
-      font-weight: 900;
-      color: #000;
-      margin-left: -8px;
+    .proof-icon {
+      font-size: 28px;
       flex-shrink: 0;
     }
-    .av:first-child { margin-left: 0; }
-    .av-1 { background: var(--neon); }
-    .av-2 { background: #6EE7B7; }
-    .av-3 { background: #93C5FD; }
-    .av-4 { background: #FCD34D; }
-
     .proof-text {
-      font-size: .78rem;
+      font-size: .8rem;
       color: var(--gray);
-      line-height: 1.4;
+      line-height: 1.45;
     }
-    .proof-text strong { color: var(--white); }
-
-    /* ── STEPS MINI ── */
-    .steps-mini {
-      width: 100%;
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
+    .proof-text strong { color: var(--text); }
+    .stars {
+      color: #F59E0B;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
     }
-    .step-mini {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      text-align: center;
-      padding: 16px 10px;
-      background: rgba(255,255,255,.02);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-    .step-mini-n {
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      background: var(--neon);
-      color: #000;
-      font-size: .75rem;
-      font-weight: 900;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .step-mini-t {
-      font-size: .72rem;
-      color: var(--gray);
-      line-height: 1.4;
-    }
-
-    /* ── FOOTER NOTE ── */
-    .footer-note {
-      margin-top: 40px;
-      font-size: .7rem;
-      color: var(--muted);
-      text-align: center;
-    }
-    .footer-note span { color: var(--neon); font-weight: 700; }
 
     /* ── SUCCESS STATE ── */
     .success-screen {
@@ -377,18 +313,18 @@
       align-items: center;
       gap: 20px;
       text-align: center;
-      padding: 20px 0;
+      padding: 16px 0;
     }
     .success-icon {
       width: 72px; height: 72px;
       border-radius: 50%;
-      background: rgba(29,78,216,.12);
-      border: 2px solid rgba(29,78,216,.4);
+      background: #DCFCE7;
+      border: 2px solid #BBF7D0;
       display: flex; align-items: center; justify-content: center;
     }
     .success-icon svg {
       width: 36px; height: 36px;
-      stroke: var(--neon);
+      stroke: #16A34A;
       stroke-width: 2;
     }
     .success-h {
@@ -396,55 +332,57 @@
       font-weight: 900;
       letter-spacing: -.03em;
       line-height: 1.2;
+      color: var(--text);
     }
-    .success-h span { color: var(--neon); }
+    .success-h span { color: var(--blue); }
     .success-p {
       font-size: .9rem;
       color: var(--gray);
       line-height: 1.65;
-      max-width: 320px;
+      max-width: 300px;
     }
     .btn-skool {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--neon);
-      color: #000;
+      background: var(--orange);
+      color: #fff;
       font-family: 'Inter', sans-serif;
       font-size: .9rem;
       font-weight: 900;
-      letter-spacing: .05em;
+      letter-spacing: .04em;
       text-transform: uppercase;
       padding: 16px 32px;
       border-radius: 12px;
       text-decoration: none;
-      box-shadow: 0 0 40px rgba(29,78,216,.25);
+      box-shadow: 0 4px 14px rgba(249,115,22,.35);
       transition: all .2s;
     }
-    .btn-skool { color: #FFFFFF; }
-    .btn-skool:hover { background: var(--neon-dk); transform: translateY(-2px); }
+    .btn-skool:hover { background: var(--orange-dk); transform: translateY(-2px); }
     .btn-skool svg { width: 16px; height: 16px; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 560px) {
-      .card { padding: 36px 24px; border-radius: 20px; }
-      h1 { font-size: 1.6rem; }
-      .steps-mini { grid-template-columns: 1fr; }
+      .card { padding: 32px 22px; border-radius: 20px; }
+      h1 { font-size: 1.65rem; }
     }
   </style>
 </head>
 <body>
-<div class="glow"></div>
+
+<!-- URGENCY BAR — sin links, no hay fuga -->
+<div class="urgency-bar">
+  ⚡ Más de <span>200 emprendedores hispanos</span> ya lo están usando — acceso gratuito
+</div>
 
 <div class="wrap">
 
-  <!-- Logo -->
+  <!-- Logo — solo texto, sin link -->
   <div class="logo">
     <span class="logo-top">York Martínez</span>
     <span class="logo-main">TU PRIMER <span>EMPLEADO IA</span></span>
   </div>
 
-  <!-- Card -->
   <div class="card">
 
     <!-- Badge -->
@@ -453,53 +391,38 @@
       Gratis · Sin experiencia · En español
     </div>
 
-    <!-- Icon -->
-    <div class="pyramid-icon">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="55,8 20,58 45,58 35,92 80,38 54,38 70,8" fill="#1D4ED8"/>
-        <polygon points="55,8 20,58 45,58 35,92 80,38 54,38 70,8" fill="url(#lg)" opacity=".3"/>
-        <defs>
-          <linearGradient id="lg" x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="100%" stop-color="#000000"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-
-    <!-- Headline -->
-    <h1>Empieza a usar IA<br><span>hoy. Desde cero.</span></h1>
+    <!-- Headline — 8 palabras, transformación clara -->
+    <h1>Ahorra 10 horas a la semana<br><span>con IA. Desde hoy.</span></h1>
 
     <p class="subhead">
-      Escribe tu nombre y correo.<br>
-      Te mando gratis <strong>las 3 herramientas que uso cada día</strong> y el <strong>mapa de 5 pasos para empezar.</strong>
+      Te mando gratis <strong>las 3 herramientas que uso cada día</strong> — con pasos exactos para que las uses hoy mismo, aunque no sepas nada de tecnología.
     </p>
 
     <div class="div"></div>
 
-    <!-- Bullets -->
+    <!-- Bullets — beneficios, no características -->
     <div class="bullets">
       <div class="bullet">
         <div class="bullet-check">
           <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <p class="bullet-text"><strong>Las bases explicadas paso a paso</strong> — La IA sin tecnicismos. Tu primera victoria en menos de 1 hora.</p>
+        <p class="bullet-text"><strong>Tu primera victoria en menos de 1 hora</strong> — La IA hace por ti lo que antes te tomaba todo el día.</p>
       </div>
       <div class="bullet">
         <div class="bullet-check">
           <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <p class="bullet-text"><strong>Las 3 herramientas que uso cada día</strong> — Con pasos exactos para que las uses hoy mismo.</p>
+        <p class="bullet-text"><strong>Sin tecnicismos, sin inglés, sin cursos</strong> — Solo lo que funciona, explicado en tu idioma.</p>
       </div>
       <div class="bullet">
         <div class="bullet-check">
           <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <p class="bullet-text"><strong>Tu mapa de 5 pasos</strong> — Para que sepas exactamente dónde estás y qué hacer primero.</p>
+        <p class="bullet-text"><strong>Sabes exactamente qué hacer primero</strong> — Tu mapa de 5 pasos para no perderte ni un minuto.</p>
       </div>
     </div>
 
-    <!-- Form -->
+    <!-- Form — 2 campos, máximo simple -->
     <form class="form" id="captureForm">
       <div class="input-wrap">
         <div class="input-icon">
@@ -514,66 +437,48 @@
         <input type="email" name="email" placeholder="Tu correo electrónico" required autocomplete="email" />
       </div>
 
+      <!-- CTA NARANJA — contrasta con la página azul/blanca -->
       <button type="submit" class="btn-submit">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        QUIERO MI ACCESO GRATIS
+        QUIERO MIS HERRAMIENTAS GRATIS
       </button>
     </form>
+
+    <!-- Urgencia bajo el botón -->
+    <p class="btn-urgency">⏳ Solo disponible mientras sea gratis</p>
 
     <!-- Privacy -->
     <p class="privacy">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Sin spam. Solo valor. Cancela cuando quieras.
+      Sin spam. Tu información está segura.
     </p>
 
-    <!-- Social proof -->
+    <!-- Social proof — específico, con estrellas -->
     <div class="social-proof">
-      <div class="avatars">
-        <div class="av av-1">YM</div>
-        <div class="av av-2">CR</div>
-        <div class="av av-3">ML</div>
-        <div class="av av-4">SP</div>
-      </div>
-      <p class="proof-text">
-        <strong>Personas como tú</strong> ya están usando la IA en su negocio. Empieza gratis hoy.
-      </p>
-    </div>
-
-    <!-- Steps mini -->
-    <div class="steps-mini">
-      <div class="step-mini">
-        <div class="step-mini-n">1</div>
-        <p class="step-mini-t">Llenar el formulario</p>
-      </div>
-      <div class="step-mini">
-        <div class="step-mini-n">2</div>
-        <p class="step-mini-t">Recibir acceso en segundos</p>
-      </div>
-      <div class="step-mini">
-        <div class="step-mini-n">3</div>
-        <p class="step-mini-t">Completar Nivel 1 hoy</p>
+      <div class="proof-icon">🙌</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <p class="proof-text">
+          <strong>"Empecé sin saber nada y en 2 días ya tenía la IA trabajando para mi negocio."</strong><br>
+          — Carlos R., dueño de negocio en Miami
+        </p>
       </div>
     </div>
 
-    <!-- Success screen (hidden) -->
+    <!-- Success screen -->
     <div class="success-screen" id="successScreen">
       <div class="success-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h2 class="success-h">¡Listo, <span id="firstName"></span>!<br>Ya tienes acceso.</h2>
-      <p class="success-p">Tu Kit de Inicio IA está listo. Accede ahora — las 3 herramientas + tu ruta completa te esperan.</p>
+      <p class="success-p">Revisa tu correo — y entra a la comunidad para empezar ahora mismo.</p>
       <a class="btn-skool" href="/gracias.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        VER MI KIT DE INICIO IA
+        VER MI KIT AHORA
       </a>
     </div>
 
   </div>
-
-  <!-- Footer note -->
-  <p class="footer-note">
-    <span>Sistema Creador IA</span> · York Martínez · Tu Primer Empleado IA
-  </p>
 
 </div>
 
@@ -588,7 +493,10 @@
     const nombre = form.nombre.value.trim();
     const email  = form.email.value.trim();
 
-    // Guardar en MailerLite
+    const btn = form.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
     try {
       await fetch('https://connect.mailerlite.com/api/subscribers', {
         method: 'POST',
@@ -606,20 +514,16 @@
       });
     } catch(err) { /* falla silenciosamente */ }
 
-    // Mostrar éxito
     firstName.textContent = nombre.split(' ')[0];
     form.style.display = 'none';
     document.querySelector('.bullets').style.display = 'none';
     document.querySelector('.div').style.display = 'none';
     document.querySelector('.privacy').style.display = 'none';
     document.querySelector('.social-proof').style.display = 'none';
-    document.querySelector('.steps-mini').style.display = 'none';
+    document.querySelector('.btn-urgency').style.display = 'none';
     success.style.display = 'flex';
 
-    // Redirigir a gracias.html con el kit completo
-    setTimeout(() => {
-      window.location.href = '/gracias.html';
-    }, 2500);
+    setTimeout(() => { window.location.href = '/gracias.html'; }, 2500);
   });
 </script>
 
