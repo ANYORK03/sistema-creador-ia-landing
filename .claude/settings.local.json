@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(where node *)",
+      "Bash(ls \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\\" | grep -i foto)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__deploy_to_vercel",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__list_teams",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__list_deployments",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__list_projects",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__get_project",
+      "Bash(git push *)",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__check_domain_availability_and_price",
+      "mcp__1d8f366b-9525-4d64-83e7-8661dd1ca593__search_threads",
+      "mcp__1d8f366b-9525-4d64-83e7-8661dd1ca593__get_thread",
+      "mcp__f431e611-3fe8-40ad-bae2-a65fd1579fce__notion-search",
+      "mcp__f431e611-3fe8-40ad-bae2-a65fd1579fce__notion-fetch",
+      "mcp__f431e611-3fe8-40ad-bae2-a65fd1579fce__notion-create-pages",
+      "mcp__f431e611-3fe8-40ad-bae2-a65fd1579fce__notion-update-page",
+      "Bash(mkdir \"E:\\\\01_BACKUPS\\\\GitHub\" \"E:\\\\01_BACKUPS\\\\MailerLite\" \"E:\\\\01_BACKUPS\\\\Notion\" \"E:\\\\02_SKOOL\\\\Nivel-1\" \"E:\\\\02_SKOOL\\\\Nivel-2\" \"E:\\\\02_SKOOL\\\\Nivel-3\" \"E:\\\\02_SKOOL\\\\Nivel-4\" \"E:\\\\02_SKOOL\\\\Nivel-5\" \"E:\\\\02_SKOOL\\\\Recursos-Compartidos\" \"E:\\\\03_CONTENIDO\\\\YouTube\" \"E:\\\\03_CONTENIDO\\\\TikTok-Reels\" \"E:\\\\03_CONTENIDO\\\\Instagram\" \"E:\\\\04_PLANTILLAS\\\\Notion\" \"E:\\\\04_PLANTILLAS\\\\Figma\" \"E:\\\\04_PLANTILLAS\\\\Canva\" \"E:\\\\05_CLIENTES\\\\Templates\" \"E:\\\\05_CLIENTES\\\\Proyectos\" \"E:\\\\06_PROYECTOS\\\\Landing\" \"E:\\\\06_PROYECTOS\\\\Código\")",
+      "PowerShell($BackupDate = Get-Date -Format \"yyyy-MM-dd_HHmm\"; $Source = \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\"; $Dest = \"E:\\\\01_BACKUPS\\\\GitHub\\\\sistema-creador-ia-landing_$BackupDate\"; Copy-Item -Path $Source -Destination $Dest -Recurse -Force; Write-Host \"✅ Backup completado en: $Dest\")",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__create_automation",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__list_automations",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__create_group",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__list_resources",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__get_auth_status",
+      "Bash(npx vercel *)",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__update_automation_email",
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__build_custom_automation"
+    ]
+  }
+}
