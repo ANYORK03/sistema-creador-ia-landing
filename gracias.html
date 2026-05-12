@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tu Kit de Inicio IA — York Martínez</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%23FF6B2B'/></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%231D4ED8'/></svg>" />
   <meta name="description" content="Tu Kit de Inicio IA ya está aquí. 3 herramientas + la Pirámide completa." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,15 +13,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:        #000000;
-      --black-card:   #0A0A0A;
-      --black-border: #1C1C1C;
-      --neon:         #FF6B2B;
-      --neon-glow:    rgba(255,107,43,.14);
-      --white:        #FFFFFF;
-      --gray-text:    rgba(255,255,255,.55);
-      --gray-sub:     rgba(255,255,255,.28);
-      --gray-line:    #1A1A1A;
+      --black:        #FFFFFF;
+      --black-card:   #F8FAFC;
+      --black-border: #E2E8F0;
+      --neon:         #1D4ED8;
+      --neon-glow:    rgba(29,78,216,.10);
+      --white:        #0F172A;
+      --gray-text:    #64748B;
+      --gray-sub:     #94A3B8;
+      --gray-line:    #E2E8F0;
     }
 
     html { scroll-behavior: smooth; }
@@ -37,7 +37,7 @@
     .confirm-bar {
       width: 100%;
       background: var(--neon);
-      color: #000;
+      color: #FFFFFF;
       text-align: center;
       padding: 10px 20px;
       font-size: 13px;
@@ -59,7 +59,7 @@
       align-items: center;
       gap: 7px;
       background: var(--neon-glow);
-      border: 1px solid rgba(255,107,43,.25);
+      border: 1px solid rgba(29,78,216,.25);
       color: var(--neon);
       font-size: 10.5px;
       font-weight: 700;
@@ -161,7 +161,7 @@
       align-items: flex-start;
       transition: border-color .2s;
     }
-    .tool-card:hover { border-color: rgba(255,107,43,.25); }
+    .tool-card:hover { border-color: rgba(29,78,216,.25); }
 
     .tool-num {
       width: 36px;
@@ -201,7 +201,7 @@
       padding: 3px 9px;
       border-radius: 100px;
       background: var(--neon-glow);
-      border: 1px solid rgba(255,107,43,.2);
+      border: 1px solid rgba(29,78,216,.2);
       color: var(--neon);
     }
 
@@ -228,8 +228,8 @@
       width: 20px;
       height: 20px;
       border-radius: 6px;
-      background: rgba(255,107,43,.1);
-      border: 1px solid rgba(255,107,43,.2);
+      background: rgba(29,78,216,.1);
+      border: 1px solid rgba(29,78,216,.2);
       color: var(--neon);
       font-size: 10px;
       font-weight: 800;
@@ -279,7 +279,7 @@
       background: var(--black);
       transition: border-color .2s;
     }
-    .level-card:hover { border-color: rgba(255,107,43,.2); }
+    .level-card:hover { border-color: rgba(29,78,216,.2); }
 
     .level-num-wrap {
       display: flex;
@@ -307,11 +307,11 @@
     }
 
     /* Color by level */
-    .lvl-1 { background: rgba(255,107,43,.10); color: var(--neon); border: 1px solid rgba(255,107,43,.20); }
-    .lvl-2 { background: rgba(255,107,43,.16); color: var(--neon); border: 1px solid rgba(255,107,43,.28); }
-    .lvl-3 { background: rgba(255,107,43,.24); color: var(--neon); border: 1px solid rgba(255,107,43,.38); }
-    .lvl-4 { background: rgba(255,107,43,.38); color: #fff; border: 1px solid rgba(255,107,43,.55); }
-    .lvl-5 { background: var(--neon); color: #fff; border: 1px solid var(--neon); }
+    .lvl-1 { background: #eff6ff; color: #1D4ED8; border: 1px solid #bfdbfe; }
+    .lvl-2 { background: #dbeafe; color: #1D4ED8; border: 1px solid #93c5fd; }
+    .lvl-3 { background: #bfdbfe; color: #1e40af; border: 1px solid #60a5fa; }
+    .lvl-4 { background: #3b82f6; color: #fff; border: 1px solid #2563eb; }
+    .lvl-5 { background: #1D4ED8; color: #fff; border: 1px solid #1D4ED8; }
 
     .level-body { flex: 1; }
     .level-name {
@@ -331,7 +331,7 @@
       margin-bottom: 8px;
     }
     .tag-base  { background: rgba(255,255,255,.07); color: var(--gray-text); }
-    .tag-top   { background: var(--neon-glow); color: var(--neon); border: 1px solid rgba(255,107,43,.25); }
+    .tag-top   { background: var(--neon-glow); color: var(--neon); border: 1px solid rgba(29,78,216,.25); }
     .tag-elite { background: var(--neon); color: #000; }
 
     .level-desc {
@@ -379,7 +379,7 @@
       align-items: center;
       gap: 10px;
       background: var(--neon);
-      color: #000;
+      color: #FFFFFF;
       font-size: 15px;
       font-weight: 800;
       padding: 16px 32px;
@@ -391,7 +391,7 @@
     .btn-primary:hover {
       background: #E85A1B;
       transform: translateY(-2px);
-      box-shadow: 0 10px 40px rgba(255,107,43,.4);
+      box-shadow: 0 10px 40px rgba(29,78,216,.4);
     }
     .btn-primary:active { transform: translateY(0); }
 
@@ -430,7 +430,7 @@
       align-items: center;
       gap: 8px;
       background: transparent;
-      border: 1px solid rgba(255,107,43,.35);
+      border: 1px solid rgba(29,78,216,.40);
       color: var(--neon);
       font-size: 13px;
       font-weight: 700;
@@ -443,7 +443,7 @@
     }
     .btn-download:hover {
       background: var(--neon-glow);
-      border-color: rgba(255,107,43,.6);
+      border-color: rgba(29,78,216,.6);
       transform: translateY(-1px);
     }
     .btn-download:active { transform: translateY(0); }
@@ -458,7 +458,7 @@
       .tool-card, .level-card { border: 1px solid #ddd !important; background: #fafafa !important; break-inside: avoid; }
       .tool-name, .level-name, h1, h2 { color: #000 !important; }
       .tool-use, .step-text, .level-desc, .section-desc, .hero-sub { color: #444 !important; }
-      .tool-num { background: #FF6B2B !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tool-num { background: #1D4ED8 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .level-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .neon, .section-tag, .tool-chip, .level-tag, .level-you, .hero-badge { color: #cc4400 !important; }
       .tool-link { color: #cc4400 !important; }
@@ -742,11 +742,11 @@ function descargarPDF() {
   doc.rect(0, 0, 210, 297, 'F');
 
   // Franja verde superior
-  doc.setFillColor(255, 107, 43);
+  doc.setFillColor(29, 78, 216);
   doc.rect(0, 0, 210, 8, 'F');
 
   // Título
-  doc.setTextColor(255, 107, 43);
+  doc.setTextColor(29, 78, 216);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(28);
   text('KIT DE INICIO IA', M, 50);
@@ -757,7 +757,7 @@ function descargarPDF() {
   text('+ La Pirámide de los 5 Niveles', M, 72);
 
   // Línea divisora
-  doc.setDrawColor(255, 107, 43);
+  doc.setDrawColor(29, 78, 216);
   doc.setLineWidth(0.5);
   doc.line(M, 80, W - M, 80);
 
@@ -772,20 +772,20 @@ function descargarPDF() {
   doc.setFontSize(12);
   doc.setFont('helvetica', 'bold');
   text('York Martínez', M, 130);
-  doc.setTextColor(255, 107, 43);
+  doc.setTextColor(29, 78, 216);
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(10);
   text('@primerempleadoia  ·  Tu Primer Empleado IA', M, 138);
 
   // Tag SISTEMA > ESFUERZO
-  fillRounded(M, 148, 70, 9, 2, [255, 107, 43]);
+  fillRounded(M, 148, 70, 9, 2, [29, 78, 216]);
   doc.setTextColor(0, 0, 0);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9);
   text('SISTEMA > ESFUERZO', M + 5, 154);
 
   // Franja verde inferior
-  doc.setFillColor(255, 107, 43);
+  doc.setFillColor(29, 78, 216);
   doc.rect(0, 289, 210, 8, 'F');
   doc.setTextColor(0, 0, 0);
   doc.setFont('helvetica', 'bold');
@@ -801,7 +801,7 @@ function descargarPDF() {
   // Encabezado sección
   doc.setFillColor(0, 0, 0);
   doc.rect(0, 0, 210, 12, 'F');
-  doc.setTextColor(255, 107, 43);
+  doc.setTextColor(29, 78, 216);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   text('KIT DE INICIO IA  —  YORK MARTÍNEZ', W / 2, 8, { align: 'center' });
@@ -851,7 +851,7 @@ function descargarPDF() {
     // Tarjeta fondo
     fillRounded(M - 2, y - 4, CW + 4, 52, 3, [245, 245, 245]);
     // Número
-    fillRounded(M + 1, y - 2, 9, 9, 1.5, [255, 107, 43]);
+    fillRounded(M + 1, y - 2, 9, 9, 1.5, [29, 78, 216]);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(9);
@@ -906,7 +906,7 @@ function descargarPDF() {
 
   doc.setFillColor(0, 0, 0);
   doc.rect(0, 0, 210, 12, 'F');
-  doc.setTextColor(255, 107, 43);
+  doc.setTextColor(29, 78, 216);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   text('TU RUTA  —  YORK MARTÍNEZ', W / 2, 8, { align: 'center' });
@@ -928,7 +928,7 @@ function descargarPDF() {
       desc: 'Dejas de ver tutoriales y empiezas a ejecutar. Creas tu primer contenido con IA, automatizas una tarea repetitiva y construyes tu flujo de trabajo.' },
     { num: 3, name: 'Red', tag: 'Comunidad', color: [190, 255, 100],
       desc: 'Te conectas con otros que están construyendo lo mismo. La red multiplica tu velocidad — aprendes más rápido y consigues tus primeros clientes.' },
-    { num: 4, name: 'Recursos', tag: 'Monetización', color: [255, 107, 43],
+    { num: 4, name: 'Recursos', tag: 'Monetización', color: [29, 78, 216],
       desc: 'Tu sistema empieza a generar ingresos. Tienes clientes, contenido constante y automatizaciones activas. Dejas de intercambiar tiempo por dinero.' },
     { num: 5, name: 'Reputación', tag: 'La Cima', color: [100, 200, 0],
       desc: 'Eres reconocido en tu mercado. Los clientes te buscan a ti. Tu marca personal trabaja mientras tú duermes. Se construye con los 4 anteriores.' }
@@ -969,7 +969,7 @@ function descargarPDF() {
     y += dLines.length * 4;
     // Badge especial
     if (l.badge) {
-      doc.setFillColor(255, 107, 43);
+      doc.setFillColor(29, 78, 216);
       doc.roundedRect(M + 17, y + 1, doc.getTextWidth(l.badge) + 8, 6, 1.5, 1.5, 'F');
       doc.setTextColor(0, 0, 0);
       doc.setFont('helvetica', 'bold');
@@ -985,7 +985,7 @@ function descargarPDF() {
   y += 4;
   doc.setFillColor(0, 0, 0);
   doc.roundedRect(M, y, CW, 18, 3, 3, 'F');
-  doc.setTextColor(255, 107, 43);
+  doc.setTextColor(29, 78, 216);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(10);
   text('⚡  Únete a Sistema Creador IA — GRATIS', W / 2, y + 7, { align: 'center' });

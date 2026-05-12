@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>York Martínez — Tu Primer Empleado IA</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%23FF6B2B'/></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23000000'/><polygon points='50,15 90,82 10,82' fill='%231D4ED8'/></svg>" />
   <meta name="description" content="York Martínez — Instalo sistemas con IA que generan contenido, clientes y automatización para negocios hispanos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,15 +13,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:        #000000;
-      --black-card:   #0A0A0A;
-      --black-border: #1C1C1C;
-      --neon:         #FF6B2B;
-      --neon-glow:    rgba(255,107,43,.15);
-      --white:        #FFFFFF;
-      --gray-text:    rgba(255,255,255,.55);
-      --gray-sub:     rgba(255,255,255,.28);
-      --gray-line:    #1A1A1A;
+      --black:        #FFFFFF;
+      --black-card:   #F1F5F9;
+      --black-border: #E2E8F0;
+      --neon:         #1D4ED8;
+      --neon-glow:    rgba(29,78,216,.10);
+      --white:        #0F172A;
+      --gray-text:    #64748B;
+      --gray-sub:     #94A3B8;
+      --gray-line:    #E2E8F0;
     }
 
     html { scroll-behavior: smooth; }
@@ -57,7 +57,7 @@
       transform: translateX(-50%);
       width: 220px;
       height: 220px;
-      background: radial-gradient(circle, rgba(255,107,43,.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(29,78,216,.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -90,7 +90,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      box-shadow: 0 0 50px rgba(255,107,43,.25), 0 0 100px rgba(255,107,43,.1);
+      box-shadow: 0 0 50px rgba(29,78,216,.25), 0 0 100px rgba(29,78,216,.1);
       pointer-events: none;
     }
 
@@ -113,7 +113,7 @@
       align-items: center;
       gap: 6px;
       background: var(--neon-glow);
-      border: 1px solid rgba(255,107,43,.25);
+      border: 1px solid rgba(29,78,216,.25);
       color: var(--neon);
       font-size: 10px;
       font-weight: 700;
@@ -250,14 +250,14 @@
       border-radius: 16px;
       padding: 17px 22px;
       text-decoration: none;
-      color: #000;
+      color: #FFFFFF;
       transition: background .2s, transform .15s, box-shadow .2s;
       margin-bottom: 4px;
     }
     .cta-primary:hover {
-      background: #E85A1B;
+      background: #1E40AF;
       transform: translateY(-2px);
-      box-shadow: 0 10px 40px rgba(255,107,43,.45);
+      box-shadow: 0 10px 40px rgba(29,78,216,.45);
     }
     .cta-primary:active { transform: translateY(0); }
     .cta-p-icon { font-size: 22px; flex-shrink: 0; }
@@ -280,20 +280,20 @@
       transition: border-color .2s, background .2s, transform .15s;
     }
     .link-btn:hover {
-      border-color: rgba(255,107,43,.3);
-      background: rgba(255,107,43,.03);
+      border-color: rgba(29,78,216,.3);
+      background: rgba(29,78,216,.03);
       transform: translateY(-1px);
     }
     .link-btn:active { transform: translateY(0); }
 
     /* Link de captura — semi-destacado */
     .link-btn.featured {
-      border-color: rgba(255,107,43,.2);
-      background: rgba(255,107,43,.04);
+      border-color: rgba(29,78,216,.2);
+      background: rgba(29,78,216,.04);
     }
     .link-btn.featured:hover {
-      border-color: rgba(255,107,43,.4);
-      background: rgba(255,107,43,.07);
+      border-color: rgba(29,78,216,.4);
+      background: rgba(29,78,216,.07);
     }
 
     .link-icon {
@@ -313,7 +313,7 @@
     .icon-yt   { background: #FF0000; }
     .icon-wa   { background: #25D366; }
     .icon-mail { background: #222; border: 1px solid #333; }
-    .icon-cap  { background: rgba(255,107,43,.15); border: 1px solid rgba(255,107,43,.3); color: var(--neon); }
+    .icon-cap  { background: rgba(29,78,216,.15); border: 1px solid rgba(29,78,216,.3); color: var(--neon); }
     .icon-cap svg { color: var(--neon); }
 
     .link-text { flex: 1; }
