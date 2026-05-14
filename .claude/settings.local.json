@@ -30,7 +30,26 @@
       "mcp__35d3da8d-19e0-430e-a714-138a0badb569__get_auth_status",
       "Bash(npx vercel *)",
       "mcp__35d3da8d-19e0-430e-a714-138a0badb569__update_automation_email",
-      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__build_custom_automation"
+      "mcp__35d3da8d-19e0-430e-a714-138a0badb569__build_custom_automation",
+      "Bash(dir \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\" /b)",
+      "WebFetch(domain:github.com)",
+      "Read(//c/Users/USER/OneDrive/Desktop/**)",
+      "Bash(find \"C:\\\\Users\\\\USER\\\\OneDrive\" -name \"*.html\" -not -path \"*/.git/*\" -not -path \"*worktrees*\" 2>/dev/null | head -30)",
+      "Bash(vercel deploy *)",
+      "PowerShell($token = \\(Get-Content \"C:\\\\Users\\\\USER\\\\.claude\\\\projects\\\\C--Users-USER-OneDrive-Desktop-mi-landing\\\\memory\\\\MEMORY.md\" -ErrorAction SilentlyContinue\\) 2>$null; echo \"check\")",
+      "Read(//c/Users/USER/.vercel/**)",
+      "Read(//c/Users/USER/.local/share/com.vercel.cli/**)",
+      "Bash(sed -n '15,25p' \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\index.html\")",
+      "Bash(sed -n '15,25p' \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\york.html\")",
+      "Bash(sed -n '15,25p' \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\gracias.html\")",
+      "Bash(sed -n '16,26p' \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\diagnostico.html\")",
+      "Bash(sed -n '125,145p' \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\york.html\")",
+      "Bash(sed -n '244,264p' \"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\mi landing\\\\.claude\\\\worktrees\\\\happy-ritchie-6aafd3\\\\york.html\")",
+      "WebFetch(domain:hookgen-primer-empleado-qidfzsixo-anyork03s-projects.vercel.app)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:hookgen-primer-empleado.vercel.app)",
+      "mcp__c2a2c554-5ea6-4aa5-8704-8964f161b7d6__get_runtime_logs",
+      "mcp__Claude_in_Chrome__tabs_context_mcp"
     ]
   }
 }
