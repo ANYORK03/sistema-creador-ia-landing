@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notion AI Content OS — Tu Sistema de Contenido con IA por $17</title>
+  <meta name="description" content="Deja de improvisar tu contenido. El sistema operativo completo en Notion para crear, organizar y publicar con IA. Por solo $17." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231D4ED8'/><text y='.9em' font-size='80' x='10'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FFFFFF;
+      --card:      #F8FAFC;
+      --border:    #E2E8F0;
+      --blue:      #1D4ED8;
+      --blue-dk:   #1E40AF;
+      --orange:    #F97316;
+      --orange-dk: #EA6C0A;
+      --text:      #0F172A;
+      --gray:      #64748B;
+      --muted:     #94A3B8;
+      --green:     #16A34A;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      width: 100%;
+      background: #0F172A;
+      color: #fff;
+      text-align: center;
+      padding: 11px 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .urgency-bar span { color: var(--orange); font-weight: 800; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 100%);
+      color: #fff;
+      padding: 64px 24px 72px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(249,115,22,0.18);
+      color: var(--orange);
+      border: 1px solid rgba(249,115,22,0.35);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.12;
+      max-width: 780px;
+      margin: 0 auto 20px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 19px);
+      color: #CBD5E1;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    /* ── PRICE BOX ── */
+    .price-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 28px 40px;
+      margin-bottom: 28px;
+    }
+
+    .price-was {
+      font-size: 15px;
+      color: #94A3B8;
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+
+    .price-now {
+      font-size: 60px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .price-label {
+      font-size: 13px;
+      color: #94A3B8;
+      margin-top: 6px;
+    }
+
+    /* ── CTA BUTTON ── */
+    .cta-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      padding: 18px 44px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background .18s, transform .12s;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      max-width: 420px;
+    }
+    .cta-btn:hover { background: var(--orange-dk); transform: translateY(-2px); }
+
+    .cta-sub {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 10px;
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 64px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+
+    .section-title span { color: var(--orange); }
+
+    /* ── PAIN ── */
+    .pain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pain-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .pain-list li .icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 0 40px;
+    }
+
+    /* ── WHAT YOU GET ── */
+    .what-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .what-card {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .what-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #EFF6FF;
+      border-radius: 10px;
+    }
+
+    .what-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .what-card p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+
+    .what-card .tag {
+      display: inline-block;
+      background: #DCFCE7;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
+
+    /* ── BONUS ── */
+    .bonus-box {
+      background: linear-gradient(135deg, #0F172A, #1E3A8A);
+      border-radius: 20px;
+      padding: 32px 28px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .bonus-box .bonus-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .bonus-box h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .bonus-box p {
+      font-size: 14px;
+      color: #CBD5E1;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .bonus-value {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94A3B8;
+    }
+
+    .bonus-value strong { color: #fff; }
+
+    /* ── TRANSFORMATION ── */
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 520px) {
+      .transform-grid { grid-template-columns: 1fr; }
+    }
+
+    .transform-card {
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .transform-card.before {
+      background: #FFF1F2;
+      border: 1px solid #FECDD3;
+    }
+
+    .transform-card.after {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+    }
+
+    .transform-card .label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .transform-card.before .label { color: #E11D48; }
+    .transform-card.after .label { color: var(--green); }
+
+    .transform-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .transform-card li {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.45;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .transform-card.before li::before { content: "✗"; position: absolute; left: 0; color: #E11D48; font-weight: 700; }
+    .transform-card.after li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+    /* ── FOR WHO ── */
+    .forwho-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .forwho-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .forwho-list li::before {
+      content: "✅";
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: var(--card);
+      border: none;
+      padding: 16px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+    }
+
+    .faq-q .arrow { font-size: 12px; color: var(--muted); transition: transform .2s; flex-shrink: 0; }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.65;
+      background: #fff;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: #0F172A;
+      color: #fff;
+      text-align: center;
+      padding: 64px 24px;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .final-cta p {
+      font-size: 15px;
+      color: #94A3B8;
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .guarantee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .guarantee strong { color: #CBD5E1; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── SEPARATOR ── */
+    .sep {
+      height: 1px;
+      background: var(--border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── SOCIAL PROOF BAR ── */
+    .proof-bar {
+      background: #F8FAFC;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .proof-item .dot { font-size: 16px; }
+
+    @media (max-width: 480px) {
+      .proof-bar { gap: 16px; }
+      .price-box { padding: 22px 28px; }
+      .price-now { font-size: 48px; }
+      .cta-btn { font-size: 15px; padding: 16px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    ⚡ Oferta de lanzamiento — Solo por <span>$17 USD</span> · El precio sube pronto
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge">🚀 Nuevo · Notion AI Content OS</div>
+    <h1>El sistema que te da <em>ideas, guiones y organización</em> para publicar todos los días con IA</h1>
+    <p class="hero-sub">Una plantilla completa en Notion con 50 prompts maestros, fábrica de guiones y calendario editorial. Lista para usar en minutos.</p>
+
+    <div class="price-box">
+      <div class="price-was">Valor real: $67 USD</div>
+      <div class="price-now">$17</div>
+      <div class="price-label">USD · Acceso de por vida · Entrega instantánea</div>
+    </div>
+
+    <div>
+      <!-- REEMPLAZA href CON TU LINK DE GUMROAD -->
+      <a class="cta-btn" href="https://3622973184914.gumroad.com/l/rgigrx?wanted=true" target="_blank">
+        Quiero mi sistema ahora — $17 →
+      </a>
+      <p class="cta-sub">🔒 Pago seguro · Acceso inmediato · Sin suscripciones</p>
+    </div>
+  </div>
+
+  <!-- SOCIAL PROOF BAR -->
+  <div class="proof-bar">
+    <div class="proof-item"><span class="dot">🤖</span> Integración con ChatGPT, Claude y Gemini</div>
+    <div class="proof-item"><span class="dot">⚡</span> Listo en menos de 5 minutos</div>
+    <div class="proof-item"><span class="dot">🔁</span> 50 prompts incluidos</div>
+    <div class="proof-item"><span class="dot">📲</span> Para cualquier red social</div>
+  </div>
+
+  <!-- PAIN SECTION -->
+  <section>
+    <h2 class="section-title">¿Te suena familiar<span>?</span></h2>
+    <ul class="pain-list">
+      <li><span class="icon">😩</span> Tienes ideas pero nunca sabes cuándo ni cómo publicarlas</li>
+      <li><span class="icon">🌀</span> Usas 5 herramientas distintas y aun así tu contenido es un caos</li>
+      <li><span class="icon">🤯</span> La IA te genera cosas pero no sabes cómo organizarlas ni usarlas</li>
+      <li><span class="icon">⏰</span> Pierdes horas escribiendo guiones que podrían tomar 10 minutos</li>
+      <li><span class="icon">📉</span> Publicas sin sistema, sin constancia, y los resultados no llegan</li>
+    </ul>
+
+    <div class="divider" style="margin-top:40px;">Eso se acaba hoy</div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- WHAT YOU GET -->
+  <section>
+    <h2 class="section-title">Todo lo que recibes <span>por $17</span></h2>
+    <div class="what-grid">
+
+      <div class="what-card">
+        <div class="what-icon">🏠</div>
+        <div>
+          <h3>Dashboard Central de Contenido</h3>
+          <p>Vista completa de todo tu contenido: ideas, guiones, en progreso y publicados. Tu hub de operaciones.</p>
+          <span class="tag">Incluido</span>
+        </div>
+      </div>
+
+      <div class="what-card">
+        <div class="what-icon">💡</div>
+        <div>
+          <h3>Base de Ideas Infinitas</h3>
+          <p>Captura ideas con plataforma, formato, pilar de contenido y tipo de hook. Nunca más olvides una idea.</p>
+          <span class="tag">Incluido</span>
+        </div>
+      </div>
+
+      <div class="what-card">
+        <div class="what-icon">✍️</div>
+        <div>
+          <h3>Fábrica de Guiones IA</h3>
+          <p>Plantillas de guión para Reel, Carrusel, Hilo de X y Post. Con prompts listos para copiar y pegar en tu IA.</p>
+          <span class="tag">Incluido</span>
+        </div>
+      </div>
+
+      <div class="what-card">
+        <div class="what-icon">📅</div>
+        <div>
+          <h3>Calendario Editorial + Kanban</h3>
+          <p>Visualiza toda tu semana de contenido. Arrastra y suelta por estados: Idea → Guión → Grabando → Publicado.</p>
+          <span class="tag">Incluido</span>
+        </div>
+      </div>
+
+      <div class="what-card">
+        <div class="what-icon">📖</div>
+        <div>
+          <h3>Guía de Uso Rápido Integrada</h3>
+          <p>Tutorial en 5 pasos dentro de la propia plantilla. Sin curvas de aprendizaje. Usas el sistema desde el día 1.</p>
+          <span class="tag">Incluido</span>
+        </div>
+      </div>
+
+      <!-- BONUS -->
+      <div class="bonus-box">
+        <div class="bonus-label">🎁 Bono incluido</div>
+        <h3>50 Prompts Maestros para Contenido Viral</h3>
+        <p>Los prompts más efectivos para hooks, guiones, carruseles, captions, hilos y estrategia. Organizados por categoría y listos para usar.</p>
+        <div class="bonus-value">Valor real <strong>$27</strong> · Tuyo gratis hoy</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- TRANSFORMATION -->
+  <section>
+    <h2 class="section-title">Tu contenido <span>antes y después</span></h2>
+    <div class="transform-grid">
+      <div class="transform-card before">
+        <div class="label">❌ Sin el sistema</div>
+        <ul>
+          <li>Ideas perdidas en notas y chats</li>
+          <li>Guiones que toman horas</li>
+          <li>Publicas cuando "puedes"</li>
+          <li>5 apps distintas, 0 orden</li>
+          <li>La IA no te ayuda de verdad</li>
+          <li>Sin constancia, sin resultados</li>
+        </ul>
+      </div>
+      <div class="transform-card after">
+        <div class="label">✅ Con el sistema</div>
+        <ul>
+          <li>Ideas organizadas y listas</li>
+          <li>Guiones en 10 minutos con IA</li>
+          <li>Calendario editorial completo</li>
+          <li>Todo en un solo lugar</li>
+          <li>Prompts que generan resultados</li>
+          <li>Publicas todos los días, sin caos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- FOR WHO -->
+  <section>
+    <h2 class="section-title">Esto es para ti si<span>...</span></h2>
+    <ul class="forwho-list">
+      <li>Eres creador de contenido hispano y quieres publicar con sistema</li>
+      <li>Eres emprendedor que necesita presencia digital pero no tiempo extra</li>
+      <li>Usas IA pero tus resultados son inconsistentes o desordenados</li>
+      <li>Ya pagaste por herramientas que no funcionaron y quieres algo que SÍ funcione</li>
+      <li>Tienes ideas pero no sabes cómo convertirlas en contenido publicable</li>
+      <li>Quieres un sistema simple, sin tecnicismos, listo para usar hoy</li>
+    </ul>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- FAQ -->
+  <section>
+    <h2 class="section-title">Preguntas <span>frecuentes</span></h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          ¿Necesito pagar Notion para usar esto?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">No. El plan gratuito de Notion es suficiente para usar toda la plantilla sin limitaciones.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          ¿Qué IA necesito tener?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">Cualquiera funciona: ChatGPT gratis, Claude gratis, Gemini gratis o la IA integrada de Notion. Los prompts están diseñados para todas.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          ¿Cómo recibo el acceso después de pagar?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">Inmediatamente. Recibes un email con el link para duplicar la plantilla en tu Notion y el bono de 50 prompts. En menos de 2 minutos ya lo tienes activo.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          ¿Funciona para cualquier tipo de contenido?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">Sí. Tiene plantillas para Reels, Carruseles, Posts, Stories, Hilos de X y Videos largos. Cubre Instagram, TikTok, YouTube, LinkedIn y Facebook.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          ¿El precio sube después?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">Sí. Este precio de $17 es de lanzamiento. Una vez que termine la oferta, el precio sube a $47. Si lo compras hoy, el acceso es de por vida al precio actual.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta">
+    <h2>Para de improvisar.<br>Empieza a publicar con sistema.</h2>
+    <p>Acceso inmediato al Notion AI Content OS + 50 Prompts Maestros de regalo. Por solo $17.</p>
+    <!-- REEMPLAZA href CON TU LINK DE GUMROAD -->
+    <a class="cta-btn" href="https://3622973184914.gumroad.com/l/rgigrx?wanted=true" target="_blank">
+      Quiero mi sistema ahora — $17 →
+    </a>
+    <div class="guarantee">
+      🔒 <strong>Pago seguro</strong> · Entrega instantánea · Sin suscripciones
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 York Martínez — Tu Primer Empleado IA · Digital Anyork LLC</p>
+    <p style="margin-top:6px;">¿Preguntas? Escríbeme en Instagram: <strong>@TuPrimerEmpleadoIA</strong></p>
+  </footer>
+
+  <script>
+    function toggle(btn) {
+      const item = btn.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
